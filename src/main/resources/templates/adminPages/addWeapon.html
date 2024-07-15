@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Splatoon Weapons - Add Weapon</title>
+</head>
+<body>
+Add Weapon
+<form action="#" th:action="@{/admin/processWeapon}" th:object="${newWeapon}" method="post">
+    <table>
+        <tr>
+            <td>
+                <label for="weaponName">Weapon Name:</label>
+            </td>
+            <td>
+                <input type="text" th:field="*{weaponName}" autofocus="autofocus" id="weaponName"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="weaponType">Class:</label>
+            </td>
+            <td>
+                <select th:field="*{weaponType.id}" id="weaponType">
+                    <option th:each="option : ${weaponTypeList}"
+                            th:value="${option.id}"
+                            th:text="${option.weaponTypeName}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="subweapon">Sub Weapon:</label>
+            </td>
+            <td>
+                <select th:field="*{subweapon.id}" id="subweapon">
+                    <option th:each="option : ${subweaponsList}"
+                            th:value="${option.id}"
+                            th:text="${option.subweaponName}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="specialWeapon">Special Weapon:</label>
+            </td>
+            <td>
+                <select th:field="*{specialWeapon.id}" id="specialWeapon">
+                    <option th:each="option : ${specialWeaponsList}"
+                            th:value="${option.id}"
+                            th:text="${option.specialWeaponName}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="matchmakingRange">Matchmaking Range:</label>
+            </td>
+            <td>
+                <input type="text" th:field="*{matchmakingRange}" id="matchmakingRange"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="weight">Weight class:</label>
+            </td>
+            <td>
+                <select th:field="*{weight.id}" id="weight">
+                    <option th:each="option : ${weightList}"
+                            th:value="${option.id}"
+                            th:text="${option.weightName}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="specialPoints">Points for Special:</label>
+            </td>
+            <td>
+                <input type="text" th:field="*{specialPoints}" id="specialPoints"/>
+            </td>
+        </tr>
+    </table>
+    <input class="button" type="submit" value="Add Weapon">
+</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Weapon List</p>
+<p><a class="button" href="addWeapon">Add Another</a></p>
+<table>
+    <thead>
+    <tr>
+        <th>Weapon</th>
+        <th>Sub Weapon</th>
+        <th>Special Weapon</th>
+        <th>Weapon Class</th>
+        <th>Weight Class</th>
+        <th>Matchmaking Range</th>
+        <th>Points for Special</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${weaponList.isEmpty()}">
+        <td colspan="6"> No Weapons</td>
+    </tr>
+    <tr th:each="weapon : ${weaponList}">
+        <td><span th:text="${weapon.weaponName}"></span></td>
+        <td><span th:text="${weapon.subweapon.subweaponName}"></span></td>
+        <td><span th:text="${weapon.specialWeapon.specialWeaponName}"></span></td>
+        <td><span th:text="${weapon.weaponType.weaponTypeName}"></span></td>
+        <td><span th:text="${weapon.weight.weightName}"></span></td>
+        <td><span th:text="${weapon.matchmakingRange}"></span></td>
+        <td><span th:text="${weapon.specialPoints}"></span></td>
+    </tr>
+    </tbody>
+</table>
+<a class="button" href="addWeapon">Add Another</a>
+</body>
+</html>
