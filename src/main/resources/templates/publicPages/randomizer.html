@@ -9,12 +9,20 @@
             }
         </script>
 </head>
-<body>
-<span th:text="${randomWeapon.weaponName}"></span>
-<!--<form action="#" th:action="@{/randomizer}" th:object="randomWeapon" method="post">-->
-<!--    <input class="button" type="submit" value="Gimme a Different One">-->
-<!--    -->
-<!--</form>-->
-<button onclick="regenerateWeapon()">Regenerate Random Weapon</button>
+<body style="background-color:lightslategray;">
+<p>
+    <img th:src="@{'/weaponImages/Spl3_Weapon_' + ${randomWeapon.id} + '.png'}" th:alt="${randomWeapon.weaponName}" width="256" height="256"/>
+</p>
+<p>
+    <img th:src="@{'/subweaponImages/Spl3_sub_' + ${randomWeapon.subweapon.id} + '_b.png'}" th:alt="${randomWeapon.subweapon.subweaponName}" width="64" height="64"/>
+    <img th:src="@{'/specialWeaponImages/Spl3_spec_' + ${randomWeapon.specialWeapon.id} + '_b.png'}" th:alt="${randomWeapon.specialWeapon.specialWeaponName}" width="64" height="64"/>
+
+</p>
+<p>
+    <span th:text="${randomWeapon.weaponName}"></span>
+</p>
+<p>
+    <button onclick="regenerateWeapon()">Gimme a Different One</button>
+</p>
 </body>
 </html>
