@@ -1,6 +1,7 @@
 package dev.melissamorgan.splatoonweapons.dao;
 
 import dev.melissamorgan.splatoonweapons.entities.*;
+import dev.melissamorgan.splatoonweapons.searchMethods.WeaponCategoryExclusionSearch;
 
 import java.util.List;
 
@@ -21,5 +22,5 @@ public interface WeaponDAO {
     WeaponType getWeaponTypeById(Integer id);
     Weight getWeightById(Integer id);
 
-    Weapon getRandomWeapon();
+    Weapon getRandomWeapon(WeaponCategoryExclusionSearch exclusionSearch);
 }

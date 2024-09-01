@@ -3,26 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <title>Splatoon 3 Weapon Randomizer</title>
-        <script>
-            function regenerateWeapon() {
-                location.replace(location.href);
-            }
-        </script>
+    <script>
+        function blacklistSubmission(event) {
+            event.preventDefault();
+
+            // Collect selected checkbox values from each list
+            const selectedTypes = Array.from(document.querySelectorAll('input[name="selectedTypes"]:checked'))
+                .map(checkbox => checkbox.value);
+            const selectedSubweapons = Array.from(document.querySelectorAll('input[name="selectedSubweapons"]:checked'))
+                .map(checkbox => checkbox.value);
+            const selectedSpecials = Array.from(document.querySelectorAll('input[name="selectedSpecials"]:checked'))
+                .map(checkbox => checkbox.value);
+            const selectedWeights = Array.from(document.querySelectorAll('input[name="selectedWeights"]:checked'))
+                .map(checkbox => checkbox.value);
+            const dupesExcluded = document.querySelector('input[name="dupesExcluded"]').checked;
+
+            // Create a URLSearchParams object to hold the query parameters
+            const params = new URLSearchParams();
+
+            // Append the selected values to the params object
+            selectedTypes.forEach(value => params.append('weaponTypeIds', value));
+            selectedSubweapons.forEach(value => params.append('subweaponIds', value));
+            selectedSpecials.forEach(value => params.append('specialWeaponIds', value));
+            selectedWeights.forEach(value => params.append('weightClassIds', value));
+            params.append('isDuplicate', dupesExcluded);
+
+            // Perform the GET request with fetch
+            fetch('/generateRandomWeapon?' + params.toString(), {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Update the images and text with the response data
+                    document.getElementById('weaponImage').src = '/weaponImages/Spl3_Weapon_' + data.id + '.png';
+                    document.getElementById('weaponImage').alt = data.weaponName;
+
+                    document.getElementById('subweaponImage').src = '/subweaponImages/Spl3_sub_' + data.subweapon.id + '_b.png';
+                    document.getElementById('subweaponImage').alt = data.subweapon.subweaponName;
+
+                    document.getElementById('specialWeaponImage').src = '/specialWeaponImages/Spl3_spec_' + data.specialWeapon.id + '_b.png';
+                    document.getElementById('specialWeaponImage').alt = data.specialWeapon.specialWeaponName;
+
+                    document.getElementById('randomWeapon').innerText = data.weaponName;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
 </head>
 <body style="background-color:lightslategray;">
 <p>
-    <img th:src="@{'/weaponImages/Spl3_Weapon_' + ${randomWeapon.id} + '.png'}" th:alt="${randomWeapon.weaponName}" width="256" height="256"/>
+    <img id="weaponImage" th:src="@{'/weaponImages/Spl3_Weapon_' + ${randomWeapon.id} + '.png'}" th:alt="${randomWeapon.weaponName}"
+         width="256" height="256"/>
 </p>
 <p>
-    <img th:src="@{'/subweaponImages/Spl3_sub_' + ${randomWeapon.subweapon.id} + '_b.png'}" th:alt="${randomWeapon.subweapon.subweaponName}" width="64" height="64"/>
-    <img th:src="@{'/specialWeaponImages/Spl3_spec_' + ${randomWeapon.specialWeapon.id} + '_b.png'}" th:alt="${randomWeapon.specialWeapon.specialWeaponName}" width="64" height="64"/>
+    <img id="subweaponImage" th:src="@{'/subweaponImages/Spl3_sub_' + ${randomWeapon.subweapon.id} + '_b.png'}"
+         th:alt="${randomWeapon.subweapon.subweaponName}" width="64" height="64"/>
+    <img id="specialWeaponImage" th:src="@{'/specialWeaponImages/Spl3_spec_' + ${randomWeapon.specialWeapon.id} + '_b.png'}"
+         th:alt="${randomWeapon.specialWeapon.specialWeaponName}" width="64" height="64"/>
 
 </p>
 <p>
-    <span th:text="${randomWeapon.weaponName}"></span>
+    <span id="randomWeapon" th:text="${randomWeapon.weaponName}"></span>
 </p>
 <p>
-    <button onclick="regenerateWeapon()">Gimme a Different One</button>
-</p>
+<form id="blacklist" onsubmit="blacklistSubmission(event);">
+    Blacklist (exclude all checked items)
+    <div>
+        <p>
+            <label>Weapon Types</label>
+        </p>
+        <p>
+            <span th:each="type : ${weaponTypeList}">
+                <input type="checkbox"
+                   th:text="${type.weaponTypeName}"
+                   th:value="${type.id}"
+                   th:name="selectedTypes"/>
+            </span>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Subweapons</label>
+        </p>
+        <p>
+        <span th:each="subweapon : ${subweaponsList}">
+            <input type="checkbox"
+                   th:text="${subweapon.subweaponName}"
+                   th:value="${subweapon.id}"
+                   th:name="selectedSubweapons"/>
+        </span>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Special Weapons</label>
+        </p>
+        <p>
+        <span th:each="special : ${specialWeaponsList}">
+            <input type="checkbox"
+                   th:text="${special.specialWeaponName}"
+                   th:value="${special.id}"
+                   th:name="selectedSpecials"/>
+        </span>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Weight Class</label>
+        </p>
+        <p>
+        <span th:each="weightClass : ${weightList}">
+            <input type="checkbox"
+                   th:text="${weightClass.weightName}"
+                   th:value="${weightClass.id}"
+                   th:name="selectedWeights"/>
+        </span>
+        </p>
+    </div>
+    <div>
+        <span>
+            <label>Exclude Duplicates
+            <input type="checkbox" th:name="dupesExcluded"/>
+            </label>
+        </span>
+    </div>
+    <input type="submit" value="Gimme a Different One">
+</form>
+
 </body>
 </html>

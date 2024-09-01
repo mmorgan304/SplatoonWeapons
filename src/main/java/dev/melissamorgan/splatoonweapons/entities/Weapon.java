@@ -134,4 +134,8 @@ public class Weapon {
         this.specialPoints = specialPoints;
     }
 
+    @Override
+    public String toString() {
+        return "{" + weaponName + "}";
+    }
 }

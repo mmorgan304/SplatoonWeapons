@@ -2,6 +2,7 @@ package dev.melissamorgan.splatoonweapons.service;
 
 import dev.melissamorgan.splatoonweapons.dao.WeaponDAO;
 import dev.melissamorgan.splatoonweapons.entities.*;
+import dev.melissamorgan.splatoonweapons.searchMethods.WeaponCategoryExclusionSearch;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,7 @@ public class WeaponServiceImplementation implements WeaponService {
     }
 
     @Override
-    public Weapon getRandomWeapon() {
-        return weaponDao.getRandomWeapon();
+    public Weapon getRandomWeapon(WeaponCategoryExclusionSearch exclusionSearch) {
+        return weaponDao.getRandomWeapon(exclusionSearch);
     }
 }
