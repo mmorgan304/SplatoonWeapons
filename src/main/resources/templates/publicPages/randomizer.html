@@ -1,40 +1,142 @@
+<!--tab scripts come from https://www.w3schools.com/howto/howto_js_tabs.asp-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Splatoon 3 Weapon Randomizer</title>
+    <style>
+        /* Flex container for main layout */
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Left side for images and weapon name */
+        .left-side {
+            flex: 1; /* Takes up equal space as right-side */
+            display: flex; /* Use flex to center content */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            padding: 20px;
+        }
+
+        /* Right side for tabs and content */
+        .right-side {
+            flex: 1; /* Takes up equal space as left-side */
+            display: flex; /* Use flex to center content */
+            flex-direction: column; /* Stack items vertically */
+            /*align-items: center; !* Center items horizontally *!*/
+            padding: 20px;
+        }
+
+        /* Styling for the tab buttons */
+        .tab {
+            display: flex;
+            justify-content: flex-start; /* Align tabs to the left */
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .tab button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            margin-right: 5px;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column; /* Stack columns vertically */
+                height: auto; /* Allow content to dictate height */
+            }
+
+            .left-side, .right-side {
+                width: 100%; /* Full width for stacked layout */
+                padding: 10px; /* Reduce padding for smaller screens */
+            }
+        }
+    </style>
     <script>
-        function blacklistSubmission(event) {
+        function openSearch(evt, weaponSearch) {
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(weaponSearch).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("defaultOpen").click(); // Automatically click the default tab
+        });
+
+        function submissionHandler(event) {
             event.preventDefault();
+            const form = event.target;
 
-            // Collect selected checkbox values from each list
-            const selectedTypes = Array.from(document.querySelectorAll('input[name="selectedTypes"]:checked'))
+            const selectedTypes = Array.from(form.querySelectorAll('input[name="selectedTypes"]:checked'))
                 .map(checkbox => checkbox.value);
-            const selectedSubweapons = Array.from(document.querySelectorAll('input[name="selectedSubweapons"]:checked'))
+            const selectedSubweapons = Array.from(form.querySelectorAll('input[name="selectedSubweapons"]:checked'))
                 .map(checkbox => checkbox.value);
-            const selectedSpecials = Array.from(document.querySelectorAll('input[name="selectedSpecials"]:checked'))
+            const selectedSpecials = Array.from(form.querySelectorAll('input[name="selectedSpecials"]:checked'))
                 .map(checkbox => checkbox.value);
-            const selectedWeights = Array.from(document.querySelectorAll('input[name="selectedWeights"]:checked'))
+            const selectedWeights = Array.from(form.querySelectorAll('input[name="selectedWeights"]:checked'))
                 .map(checkbox => checkbox.value);
-            const dupesExcluded = document.querySelector('input[name="dupesExcluded"]').checked;
+            const selectedWeapons = Array.from(form.querySelectorAll('input[name="selectedWeapons"]:checked'))
+                .map(checkbox => checkbox.value);
+            const dupesExcluded = form.querySelector('input[name="dupesExcluded"]').checked;
+            const isInclusionSearch = form.querySelector('input[name="isInclusionSearch"]').value;
 
-            // Create a URLSearchParams object to hold the query parameters
             const params = new URLSearchParams();
 
-            // Append the selected values to the params object
             selectedTypes.forEach(value => params.append('weaponTypeIds', value));
             selectedSubweapons.forEach(value => params.append('subweaponIds', value));
             selectedSpecials.forEach(value => params.append('specialWeaponIds', value));
             selectedWeights.forEach(value => params.append('weightClassIds', value));
+            selectedWeapons.forEach(value => params.append('weaponIds', value));
             params.append('isDuplicate', dupesExcluded);
+            params.append('isInclusionSearch', isInclusionSearch);
 
-            // Perform the GET request with fetch
             fetch('/generateRandomWeapon?' + params.toString(), {
                 method: 'GET'
             })
                 .then(response => response.json())
                 .then(data => {
-                    // Update the images and text with the response data
                     document.getElementById('weaponImage').src = '/weaponImages/Spl3_Weapon_' + data.id + '.png';
                     document.getElementById('weaponImage').alt = data.weaponName;
 
@@ -46,90 +148,75 @@
 
                     document.getElementById('randomWeapon').innerText = data.weaponName;
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error:', error)
+                });
         }
     </script>
-
 </head>
 <body style="background-color:lightslategray;">
-<p>
-    <img id="weaponImage" th:src="@{'/weaponImages/Spl3_Weapon_' + ${randomWeapon.id} + '.png'}" th:alt="${randomWeapon.weaponName}"
-         width="256" height="256"/>
-</p>
-<p>
-    <img id="subweaponImage" th:src="@{'/subweaponImages/Spl3_sub_' + ${randomWeapon.subweapon.id} + '_b.png'}"
-         th:alt="${randomWeapon.subweapon.subweaponName}" width="64" height="64"/>
-    <img id="specialWeaponImage" th:src="@{'/specialWeaponImages/Spl3_spec_' + ${randomWeapon.specialWeapon.id} + '_b.png'}"
-         th:alt="${randomWeapon.specialWeapon.specialWeaponName}" width="64" height="64"/>
 
-</p>
-<p>
-    <span id="randomWeapon" th:text="${randomWeapon.weaponName}"></span>
-</p>
-<p>
-<form id="blacklist" onsubmit="blacklistSubmission(event);">
-    Blacklist (exclude all checked items)
-    <div>
+<div class="main-container">
+    <!-- Left Side: Images and Weapon Name -->
+    <div class="left-side">
         <p>
-            <label>Weapon Types</label>
+            <img id="weaponImage" th:src="@{'/weaponImages/Spl3_Weapon_' + ${randomWeapon.id} + '.png'}"
+                 th:alt="${randomWeapon.weaponName}"
+                 width="256" height="256"/>
         </p>
         <p>
-            <span th:each="type : ${weaponTypeList}">
-                <input type="checkbox"
-                   th:text="${type.weaponTypeName}"
-                   th:value="${type.id}"
-                   th:name="selectedTypes"/>
-            </span>
-        </p>
-    </div>
-    <div>
-        <p>
-            <label>Subweapons</label>
+            <img id="subweaponImage" th:src="@{'/subweaponImages/Spl3_sub_' + ${randomWeapon.subweapon.id} + '_b.png'}"
+                 th:alt="${randomWeapon.subweapon.subweaponName}" width="64" height="64"/>
+            <img id="specialWeaponImage"
+                 th:src="@{'/specialWeaponImages/Spl3_spec_' + ${randomWeapon.specialWeapon.id} + '_b.png'}"
+                 th:alt="${randomWeapon.specialWeapon.specialWeaponName}" width="64" height="64"/>
         </p>
         <p>
-        <span th:each="subweapon : ${subweaponsList}">
-            <input type="checkbox"
-                   th:text="${subweapon.subweaponName}"
-                   th:value="${subweapon.id}"
-                   th:name="selectedSubweapons"/>
-        </span>
+            <span id="randomWeapon" th:text="${randomWeapon.weaponName}"></span>
         </p>
     </div>
-    <div>
-        <p>
-            <label>Special Weapons</label>
-        </p>
-        <p>
-        <span th:each="special : ${specialWeaponsList}">
-            <input type="checkbox"
-                   th:text="${special.specialWeaponName}"
-                   th:value="${special.id}"
-                   th:name="selectedSpecials"/>
-        </span>
-        </p>
-    </div>
-    <div>
-        <p>
-            <label>Weight Class</label>
-        </p>
-        <p>
-        <span th:each="weightClass : ${weightList}">
-            <input type="checkbox"
-                   th:text="${weightClass.weightName}"
-                   th:value="${weightClass.id}"
-                   th:name="selectedWeights"/>
-        </span>
-        </p>
-    </div>
-    <div>
-        <span>
-            <label>Exclude Duplicates
-            <input type="checkbox" th:name="dupesExcluded"/>
-            </label>
-        </span>
-    </div>
-    <input type="submit" value="Gimme a Different One">
-</form>
 
+    <!-- Right Side: Tabs and Content -->
+    <div class="right-side">
+        <!-- Tab Buttons -->
+        <div class="tab">
+            <button class="tablinks" onclick="openSearch(event, 'blacklistTab')" id="defaultOpen">Blacklist</button>
+            <button class="tablinks" onclick="openSearch(event, 'whitelistTab')">Whitelist</button>
+            <button class="tablinks" onclick="openSearch(event, 'singleWeaponSearchTab')">Single Weapon Selection
+            </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="blacklistTab" class="tabcontent">
+            Blacklist (exclude all checked items)
+            <div th:replace="~{fragments/formFragments :: #categorySearches(isInclusionSearch='false')}"></div>
+        </div>
+
+        <div id="whitelistTab" class="tabcontent">
+            Whitelist (include only the checked items)
+            <div th:replace="~{fragments/formFragments :: #categorySearches(isInclusionSearch='true')}"></div>
+        </div>
+
+        <div id="singleWeaponSearchTab" class="tabcontent">
+            Need more control? Select only the weapons you want:
+            <div>
+                <form id="singleWeaponSearch" onsubmit="submissionHandler(event);">
+                    <div>
+                        <p>
+                        <span th:each="weapon : ${weaponList}">
+                            <input type="checkbox"
+                                   th:text="${weapon.weaponName}"
+                                   th:value="${weapon.id}"
+                                   th:name="selectedWeapons"/>
+                        </span>
+                        </p>
+                    </div>
+                    <input type="hidden" name="isInclusionSearch" value=true>
+                    <input type="submit" value="Gimme a Different One">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

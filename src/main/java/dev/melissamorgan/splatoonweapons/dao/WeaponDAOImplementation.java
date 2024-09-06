@@ -1,7 +1,7 @@
 package dev.melissamorgan.splatoonweapons.dao;
 
 import dev.melissamorgan.splatoonweapons.entities.*;
-import dev.melissamorgan.splatoonweapons.searchMethods.WeaponCategoryExclusionSearch;
+import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -76,48 +76,88 @@ public class WeaponDAOImplementation implements WeaponDAO {
     }
 
     @Override
-    public Weapon getRandomWeapon(WeaponCategoryExclusionSearch exclusionSearch) {
+    public Weapon getRandomWeapon(WeaponSearch weaponSearch) {
         List<Weapon> weaponList;
-        StringBuilder queryBuilder = getStringBuilder(exclusionSearch);
+        StringBuilder queryBuilder;
+        if (weaponSearch.isInclusionSearch()) {
+            queryBuilder = inclusiveQuery(weaponSearch);
+        } else {
+            queryBuilder = exclusiveQuery(weaponSearch);
+        }
         TypedQuery<Weapon> query = entityManager.createQuery(queryBuilder.toString(), Weapon.class);
-        if (exclusionSearch != null) {
-            if (exclusionSearch.getWeaponTypeIds() != null && !exclusionSearch.getWeaponTypeIds().isEmpty()) {
-                query.setParameter("weaponTypeIds", exclusionSearch.getWeaponTypeIds());
-            }
-            if (exclusionSearch.getSubweaponIds() != null && !exclusionSearch.getSubweaponIds().isEmpty()) {
-                query.setParameter("subweaponIds", exclusionSearch.getSubweaponIds());
-            }
-            if (exclusionSearch.getSpecialWeaponIds() != null && !exclusionSearch.getSpecialWeaponIds().isEmpty()) {
-                query.setParameter("specialWeaponIds", exclusionSearch.getSpecialWeaponIds());
-            }
-            if (exclusionSearch.getWeightClassIds() != null && !exclusionSearch.getWeightClassIds().isEmpty()) {
-                query.setParameter("weightClassIds", exclusionSearch.getWeightClassIds());
-            }
+        if (weaponSearch.getWeaponTypeIds() != null && !weaponSearch.getWeaponTypeIds().isEmpty()) {
+            query.setParameter("weaponTypeIds", weaponSearch.getWeaponTypeIds());
+        }
+        if (weaponSearch.getSubweaponIds() != null && !weaponSearch.getSubweaponIds().isEmpty()) {
+            query.setParameter("subweaponIds", weaponSearch.getSubweaponIds());
+        }
+        if (weaponSearch.getSpecialWeaponIds() != null && !weaponSearch.getSpecialWeaponIds().isEmpty()) {
+            query.setParameter("specialWeaponIds", weaponSearch.getSpecialWeaponIds());
+        }
+        if (weaponSearch.getWeightClassIds() != null && !weaponSearch.getWeightClassIds().isEmpty()) {
+            query.setParameter("weightClassIds", weaponSearch.getWeightClassIds());
         }
         weaponList = query.getResultList();
         Collections.shuffle(weaponList);
         return weaponList.isEmpty() ? null : weaponList.getFirst();
     }
 
-    private static StringBuilder getStringBuilder(WeaponCategoryExclusionSearch exclusionSearch) {
+    private static StringBuilder exclusiveQuery(WeaponSearch weaponSearch) {
         StringBuilder queryBuilder = new StringBuilder("SELECT w FROM Weapon w WHERE 1=1");
-        if (exclusionSearch != null) {
-            if (exclusionSearch.getWeaponTypeIds() != null && !exclusionSearch.getWeaponTypeIds().isEmpty()) {
+        if (weaponSearch != null) {
+            if (weaponSearch.getWeaponTypeIds() != null && !weaponSearch.getWeaponTypeIds().isEmpty()) {
                 queryBuilder.append(" AND w.weaponType.id NOT IN :weaponTypeIds");
             }
-            if (exclusionSearch.getSubweaponIds() != null && !exclusionSearch.getSubweaponIds().isEmpty()) {
+            if (weaponSearch.getSubweaponIds() != null && !weaponSearch.getSubweaponIds().isEmpty()) {
                 queryBuilder.append(" AND w.subweapon.id NOT IN :subweaponIds");
             }
-            if (exclusionSearch.getSpecialWeaponIds() != null && !exclusionSearch.getSpecialWeaponIds().isEmpty()) {
+            if (weaponSearch.getSpecialWeaponIds() != null && !weaponSearch.getSpecialWeaponIds().isEmpty()) {
                 queryBuilder.append(" AND w.specialWeapon.id NOT IN :specialWeaponIds");
             }
-            if (exclusionSearch.getWeightClassIds() != null && !exclusionSearch.getWeightClassIds().isEmpty()) {
+            if (weaponSearch.getWeightClassIds() != null && !weaponSearch.getWeightClassIds().isEmpty()) {
                 queryBuilder.append(" AND w.weight.id NOT IN :weightClassIds");
             }
-            if (exclusionSearch.isDuplicate()) {
+            if (weaponSearch.isDuplicate()) {
                 queryBuilder.append(" AND w.weaponName NOT LIKE '%replica%'");
             }
         }
+        return queryBuilder;
+    }
+
+    private static StringBuilder inclusiveQuery(WeaponSearch weaponSearch) {
+        StringBuilder queryBuilder = new StringBuilder("SELECT w FROM Weapon w WHERE 1=1");
+        boolean hasCriteria = false;
+
+        if (weaponSearch != null) {
+            queryBuilder.append(" AND (");
+            if (weaponSearch.getWeaponTypeIds() != null && !weaponSearch.getWeaponTypeIds().isEmpty()) {
+                queryBuilder.append(" w.weaponType.id IN :weaponTypeIds");
+                hasCriteria = true;
+            }
+            if (weaponSearch.getSubweaponIds() != null && !weaponSearch.getSubweaponIds().isEmpty()) {
+                if (hasCriteria) queryBuilder.append(" OR");
+                queryBuilder.append(" w.subweapon.id IN :subweaponIds");
+                hasCriteria = true;
+            }
+            if (weaponSearch.getSpecialWeaponIds() != null && !weaponSearch.getSpecialWeaponIds().isEmpty()) {
+                if (hasCriteria) queryBuilder.append(" OR");
+                queryBuilder.append(" w.specialWeapon.id IN :specialWeaponIds");
+                hasCriteria = true;
+            }
+            if (weaponSearch.getWeightClassIds() != null && !weaponSearch.getWeightClassIds().isEmpty()) {
+                if (hasCriteria) queryBuilder.append(" OR");
+                queryBuilder.append(" w.weight.id IN :weightClassIds");
+                hasCriteria = true;
+            }
+            if (hasCriteria) {
+                queryBuilder.append(" )");
+            }
+
+            if (weaponSearch.isDuplicate()) {
+                queryBuilder.append(" AND w.weaponName NOT LIKE '%replica%'");
+            }
+        }
+        System.out.println(queryBuilder);
         return queryBuilder;
     }
 

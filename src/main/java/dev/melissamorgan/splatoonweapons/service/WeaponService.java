@@ -1,7 +1,7 @@
 package dev.melissamorgan.splatoonweapons.service;
 
 import dev.melissamorgan.splatoonweapons.entities.*;
-import dev.melissamorgan.splatoonweapons.searchMethods.WeaponCategoryExclusionSearch;
+import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 
 import java.util.List;
 
@@ -24,5 +24,5 @@ public interface WeaponService {
     WeaponType getWeaponTypeById(Integer id);
     Weight getWeightById(Integer id);
 
-    Weapon getRandomWeapon(WeaponCategoryExclusionSearch exclusionSearch);
+    Weapon getRandomWeapon(WeaponSearch inclusionSearch);
 }

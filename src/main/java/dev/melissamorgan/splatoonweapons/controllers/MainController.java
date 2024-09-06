@@ -1,7 +1,7 @@
 package dev.melissamorgan.splatoonweapons.controllers;
 
 import dev.melissamorgan.splatoonweapons.entities.Weapon;
-import dev.melissamorgan.splatoonweapons.searchMethods.WeaponCategoryExclusionSearch;
+import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 import dev.melissamorgan.splatoonweapons.service.WeaponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,7 +29,7 @@ public class MainController {
 
     @GetMapping("/randomizer")
     public String randomizer(Model model) {
-        Weapon randomWeapon = weaponService.getRandomWeapon(new WeaponCategoryExclusionSearch());
+        Weapon randomWeapon = weaponService.getRandomWeapon(new WeaponSearch());
         model.addAttribute("randomWeapon", randomWeapon);
         return "publicPages/randomizer";
     }
@@ -42,17 +41,21 @@ public class MainController {
             @RequestParam(required = false) List<Integer> subweaponIds,
             @RequestParam(required = false) List<Integer> specialWeaponIds,
             @RequestParam(required = false) List<Integer> weightClassIds,
-            @RequestParam(required = false) boolean isDuplicate
+            @RequestParam(required = false) boolean isDuplicate,
+            @RequestParam(required = false) List<Integer> weaponIds,
+            @RequestParam boolean isInclusionSearch
     ) {
-        WeaponCategoryExclusionSearch exclusionSearch = new WeaponCategoryExclusionSearch();
-        exclusionSearch.setWeaponTypeIds(weaponTypeIds);
-        exclusionSearch.setSubweaponIds(subweaponIds);
-        exclusionSearch.setSpecialWeaponIds(specialWeaponIds);
-        exclusionSearch.setWeightClassIds(weightClassIds);
-        exclusionSearch.setDuplicate(isDuplicate);
+        WeaponSearch weaponSearch = new WeaponSearch();
+        weaponSearch.setWeaponTypeIds(weaponTypeIds);
+        weaponSearch.setSubweaponIds(subweaponIds);
+        weaponSearch.setSpecialWeaponIds(specialWeaponIds);
+        weaponSearch.setWeightClassIds(weightClassIds);
+        weaponSearch.setDuplicate(isDuplicate);
+        weaponSearch.setWeaponIds(weaponIds);
+        weaponSearch.setInclusionSearch(isInclusionSearch);
 
-        return weaponService.getRandomWeapon(exclusionSearch);
+        System.out.println(weaponSearch);
+        return weaponService.getRandomWeapon(weaponSearch);
     }
-
 
 }

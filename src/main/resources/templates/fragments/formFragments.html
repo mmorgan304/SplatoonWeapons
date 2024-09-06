@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<form id="categorySearches" onsubmit="submissionHandler(event);">
+    <div>
+        <p>
+            <label>Weapon Types</label>
+        </p>
+        <p>
+                    <span th:each="type : ${weaponTypeList}">
+                        <input type="checkbox"
+                               th:text="${type.weaponTypeName}"
+                               th:value="${type.id}"
+                               th:name="selectedTypes"/>
+                    </span>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Subweapons</label>
+        </p>
+        <p>
+                <span th:each="subweapon : ${subweaponsList}">
+                    <input type="checkbox"
+                           th:text="${subweapon.subweaponName}"
+                           th:value="${subweapon.id}"
+                           th:name="selectedSubweapons"/>
+                </span>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Special Weapons</label>
+        </p>
+        <p>
+                <span th:each="special : ${specialWeaponsList}">
+                    <input type="checkbox"
+                           th:text="${special.specialWeaponName}"
+                           th:value="${special.id}"
+                           th:name="selectedSpecials"/>
+                </span>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Weight Class</label>
+        </p>
+        <p>
+                <span th:each="weightClass : ${weightList}">
+                    <input type="checkbox"
+                           th:text="${weightClass.weightName}"
+                           th:value="${weightClass.id}"
+                           th:name="selectedWeights"/>
+                </span>
+        </p>
+    </div>
+    <div>
+                <span>
+                    <label>Exclude Duplicates
+                    <input type="checkbox" name="dupesExcluded"/>
+                    </label>
+                </span>
+    </div>
+    <input type="hidden" name="isInclusionSearch"  th:value="${isInclusionSearch}">
+    <input type="submit" value="Gimme a Different One">
+</form>
+</body>
+</html>

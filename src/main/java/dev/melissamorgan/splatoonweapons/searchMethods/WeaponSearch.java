@@ -2,14 +2,36 @@ package dev.melissamorgan.splatoonweapons.searchMethods;
 
 import java.util.List;
 
-public class WeaponCategoryExclusionSearch {
+public class WeaponSearch {
     private boolean isDuplicate;
     private List<Integer> weaponTypeIds;
     private List<Integer> subweaponIds;
     private List<Integer> specialWeaponIds;
     private List<Integer> weightClassIds;
+    private List<Integer> weaponIds;
+    private boolean isInclusionSearch;
 
-    public WeaponCategoryExclusionSearch() {
+    public WeaponSearch() {}
+
+    @Override
+    public String toString() {
+        return "WeaponSearch{" +
+                "isDuplicate=" + isDuplicate +
+                ", weaponTypeIds=" + weaponTypeIds +
+                ", subweaponIds=" + subweaponIds +
+                ", specialWeaponIds=" + specialWeaponIds +
+                ", weightClassIds=" + weightClassIds +
+                ", weaponIds=" + weaponIds +
+                ", isInclusionSearch=" + isInclusionSearch +
+                '}';
+    }
+
+    public boolean isInclusionSearch() {
+        return isInclusionSearch;
+    }
+
+    public void setInclusionSearch(boolean inclusionSearch) {
+        isInclusionSearch = inclusionSearch;
     }
 
     public boolean isDuplicate() {
@@ -52,14 +74,11 @@ public class WeaponCategoryExclusionSearch {
         this.weightClassIds = weightClassIds;
     }
 
-    @Override
-    public String toString() {
-        return "WeaponCategoryExclusionSearch{" +
-                "isDuplicate=" + isDuplicate +
-                ", weaponTypeIds=" + weaponTypeIds +
-                ", subweaponIds=" + subweaponIds +
-                ", specialWeaponIds=" + specialWeaponIds +
-                ", weightClassIds=" + weightClassIds +
-                '}';
+    public List<Integer> getWeaponIds() {
+        return weaponIds;
+    }
+
+    public void setWeaponIds(List<Integer> weaponIds) {
+        this.weaponIds = weaponIds;
     }
 }

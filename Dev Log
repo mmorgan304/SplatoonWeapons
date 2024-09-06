@@ -1,10 +1,10 @@
 Sept 1, 2024
 ------------------
-Blacklist search to the database is now functional. Whitelist and individual weapon search will be easy to implement.
+Blacklist weaponSearch to the database is now functional. Whitelist and individual weapon weaponSearch will be easy to implement.
 
 Next step though is to dress the page up better. I'd like to make the blacklist selections into something that looks like a
-tabbed interface, where the whitelist and individual weapon search can be alternate tabs, so that the user can only
-choose one of the database search options. Those tabs can just say "Coming soon!" until the whitelist and individual are
+tabbed interface, where the whitelist and individual weapon weaponSearch can be alternate tabs, so that the user can only
+choose one of the database weaponSearch options. Those tabs can just say "Coming soon!" until the whitelist and individual are
 implemented.
 
 I would also like to include a navigation bar at the top, where I can put an app title, my information (Github link,
@@ -12,3 +12,15 @@ Squidboards profile, personal website, Twitter???), and contact info (Github and
 
 Then I guess it can be taken online. Nevermind trying to literally set up a server in my basement, I'm also concerned
 about database security. I'm not really in a place to set up cloud hosting, so I don't know where to start.
+
+Edit: handle edge case where there are no valid weapons returned.
+
+Sept 2, 2024
+------------------
+Tabs are now in the CSS - still need to address the functionality portion where being in one tab prevents information
+from the other tabs from getting to the controller. This might not actually be a problem, but I haven't looked at it yet.
+
+Sept 6, 2024
+------------------
+Whitelist search is functional now. Adding single weapon search has been tricker than I thought for reasons I don't
+understand yet.
