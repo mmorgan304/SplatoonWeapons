@@ -24,3 +24,10 @@ Sept 6, 2024
 ------------------
 Whitelist search is functional now. Adding single weapon search has been tricker than I thought for reasons I don't
 understand yet.
+
+Sept 8, 2024
+------------------
+All searches are working now - single weapon search just required a bunch of conditionals in the querybuilder to form a
+coherent query. Honestly, it looks pretty bad and overcomplicated, but it works for now so I can't ask for more. I've
+added categorization to the layout of single weapon search, so next I'd like to add some collapsable tabs so the list
+isn't twenty thousand miles long and screwing up the page layout.

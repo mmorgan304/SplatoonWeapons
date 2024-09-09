@@ -54,7 +54,6 @@ public class MainController {
         weaponSearch.setWeaponIds(weaponIds);
         weaponSearch.setInclusionSearch(isInclusionSearch);
 
-        System.out.println(weaponSearch);
         return weaponService.getRandomWeapon(weaponSearch);
     }
 

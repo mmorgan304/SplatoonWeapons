@@ -25,14 +25,14 @@ public class AdminController {
         model.addAttribute("weaponList", weaponService.populateAllWeapons());
     }
 
-    @GetMapping("/addWeapon")
+    @GetMapping("/addweapon")
     public String addWeapon(Model model) {
         Weapon weapon = new Weapon();
         model.addAttribute("newWeapon", weapon);
-        return "adminPages/addWeapon";
+        return "adminPages/addweapon";
     }
 
-    @PostMapping("/processWeapon")
+    @PostMapping("/processweapon")
     public String processWeapon(
             @ModelAttribute("newWeapon") Weapon weapon
     ) {
@@ -41,12 +41,12 @@ public class AdminController {
         weapon.setSpecialWeapon(weaponService.getSpecialWeaponById(weapon.getSpecialWeapon().getId()));
         weapon.setWeight(weaponService.getWeightById(weapon.getWeight().getId()));
         weaponService.saveWeapon(weapon);
-        return "redirect:weaponList";
+        return "redirect:weaponlist";
     }
 
-    @GetMapping("/weaponList")
+    @GetMapping("/weaponlist")
     public String weaponList() {
-        return "adminPages/weaponList";
+        return "adminPages/weaponlist";
     }
 
     @RequestMapping("/test")

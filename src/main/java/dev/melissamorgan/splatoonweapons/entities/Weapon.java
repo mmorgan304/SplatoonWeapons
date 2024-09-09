@@ -32,7 +32,7 @@ public class Weapon {
     @JoinColumn(name = "special_weapon_id")
     private SpecialWeapon specialWeapon;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "class_id")
     private WeaponType weaponType;
 

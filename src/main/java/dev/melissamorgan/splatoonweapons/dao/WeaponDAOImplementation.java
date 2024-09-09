@@ -97,6 +97,9 @@ public class WeaponDAOImplementation implements WeaponDAO {
         if (weaponSearch.getWeightClassIds() != null && !weaponSearch.getWeightClassIds().isEmpty()) {
             query.setParameter("weightClassIds", weaponSearch.getWeightClassIds());
         }
+        if (weaponSearch.getWeaponIds() != null && !weaponSearch.getWeaponIds().isEmpty()) {
+            query.setParameter("weaponIds", weaponSearch.getWeaponIds());
+        }
         weaponList = query.getResultList();
         Collections.shuffle(weaponList);
         return weaponList.isEmpty() ? null : weaponList.getFirst();
@@ -129,7 +132,14 @@ public class WeaponDAOImplementation implements WeaponDAO {
         boolean hasCriteria = false;
 
         if (weaponSearch != null) {
-            queryBuilder.append(" AND (");
+            // Check if any criteria will be appended before adding the opening parenthesis
+            if ((weaponSearch.getWeaponTypeIds() != null && !weaponSearch.getWeaponTypeIds().isEmpty()) ||
+                    (weaponSearch.getSubweaponIds() != null && !weaponSearch.getSubweaponIds().isEmpty()) ||
+                    (weaponSearch.getSpecialWeaponIds() != null && !weaponSearch.getSpecialWeaponIds().isEmpty()) ||
+                    (weaponSearch.getWeightClassIds() != null && !weaponSearch.getWeightClassIds().isEmpty()) ||
+                    (weaponSearch.getWeaponIds() != null && !weaponSearch.getWeaponIds().isEmpty())) {
+                queryBuilder.append(" AND (");
+            }
             if (weaponSearch.getWeaponTypeIds() != null && !weaponSearch.getWeaponTypeIds().isEmpty()) {
                 queryBuilder.append(" w.weaponType.id IN :weaponTypeIds");
                 hasCriteria = true;
@@ -149,15 +159,18 @@ public class WeaponDAOImplementation implements WeaponDAO {
                 queryBuilder.append(" w.weight.id IN :weightClassIds");
                 hasCriteria = true;
             }
+            if (weaponSearch.getWeaponIds() != null && !weaponSearch.getWeaponIds().isEmpty()) {
+                if (hasCriteria) queryBuilder.append(" OR");
+                queryBuilder.append(" w.id IN :weaponIds");
+                hasCriteria = true;
+            }
             if (hasCriteria) {
                 queryBuilder.append(" )");
             }
-
             if (weaponSearch.isDuplicate()) {
                 queryBuilder.append(" AND w.weaponName NOT LIKE '%replica%'");
             }
         }
-        System.out.println(queryBuilder);
         return queryBuilder;
     }
 
