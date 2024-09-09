@@ -31,3 +31,9 @@ All searches are working now - single weapon search just required a bunch of con
 coherent query. Honestly, it looks pretty bad and overcomplicated, but it works for now so I can't ask for more. I've
 added categorization to the layout of single weapon search, so next I'd like to add some collapsable tabs so the list
 isn't twenty thousand miles long and screwing up the page layout.
+
+Sept 9, 2024
+------------------
+Continuing to style. Collapsible tabs have been added to the single weapon search, and I finally got it locked so that
+the content doesn't flow off the top of the screen. At this point, it's just colors, margins, and finding a sick button
+for the generate weapon submission. I found a Splatoon font.

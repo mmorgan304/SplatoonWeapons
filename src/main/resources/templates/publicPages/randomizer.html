@@ -5,164 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Splatoon 3 Weapon Randomizer</title>
-    <style>
-        /* Flex container for main layout */
-        .main-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100vh;
-        }
-
-        /* Left side for images and weapon name */
-        .left-side {
-            flex: 1; /* Takes up equal space as right-side */
-            display: flex; /* Use flex to center content */
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-            justify-content: center; /* Center items vertically */
-            padding: 20px;
-        }
-
-        /* Right side for tabs and content */
-        .right-side {
-            flex: 1; /* Takes up equal space as left-side */
-            display: flex; /* Use flex to center content */
-            flex-direction: column; /* Stack items vertically */
-            /*align-items: center; !* Center items horizontally *!*/
-            padding: 20px;
-        }
-
-        /* Styling for the tab buttons */
-        .tab {
-            display: flex;
-            justify-content: flex-start; /* Align tabs to the left */
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 10px;
-        }
-
-        .tab button {
-            background-color: inherit;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            margin-right: 5px;
-        }
-
-        .tab button:hover {
-            background-color: #ddd;
-        }
-
-        .tab button.active {
-            background-color: #ccc;
-        }
-
-        /* Tab content */
-        .tabcontent {
-            display: none;
-            padding: 6px 12px;
-            border: 1px solid #ccc;
-            border-top: none;
-        }
-
-        /* Media query for smaller screens */
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column; /* Stack columns vertically */
-                height: auto; /* Allow content to dictate height */
-            }
-
-            .left-side, .right-side {
-                width: 100%; /* Full width for stacked layout */
-                padding: 10px; /* Reduce padding for smaller screens */
-            }
-        }
-    </style>
-    <script>
-        function openSearch(evt, weaponSearch) {
-            var i, tabcontent, tablinks;
-
-            // Get all elements with class="tabcontent" and hide them
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-
-            // Get all elements with class="tablinks" and remove the class "active"
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-
-            // Show the current tab, and add an "active" class to the button that opened the tab
-            document.getElementById(weaponSearch).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("defaultOpen").click(); // Automatically click the default tab
-        });
-
-        function submissionHandler(event) {
-            event.preventDefault();
-            const form = event.target;
-
-            const selectedTypes = form.querySelectorAll('input[name="selectedTypes"]:checked').length > 0
-                ? Array.from(form.querySelectorAll('input[name="selectedTypes"]:checked')).map(checkbox => checkbox.value)
-                : [];
-
-            const selectedSubweapons = form.querySelectorAll('input[name="selectedSubweapons"]:checked').length > 0
-                ? Array.from(form.querySelectorAll('input[name="selectedSubweapons"]:checked')).map(checkbox => checkbox.value)
-                : [];
-
-            const selectedSpecials = form.querySelectorAll('input[name="selectedSpecials"]:checked').length > 0
-                ? Array.from(form.querySelectorAll('input[name="selectedSpecials"]:checked')).map(checkbox => checkbox.value)
-                : [];
-
-            const selectedWeights = form.querySelectorAll('input[name="selectedWeights"]:checked').length > 0
-                ? Array.from(form.querySelectorAll('input[name="selectedWeights"]:checked')).map(checkbox => checkbox.value)
-                : [];
-
-            const selectedWeapons = Array.from(form.querySelectorAll('input[name="selectedWeapons"]:checked'))
-                .map(checkbox => checkbox.value);
-            const dupesExcluded = form.querySelector('input[name="dupesExcluded"]') ? form.querySelector('input[name="dupesExcluded"]').checked : false;
-            const isInclusionSearch = form.querySelector('input[name="isInclusionSearch"]').value;
-
-            const params = new URLSearchParams();
-
-            selectedTypes.forEach(value => params.append('weaponTypeIds', value));
-            selectedSubweapons.forEach(value => params.append('subweaponIds', value));
-            selectedSpecials.forEach(value => params.append('specialWeaponIds', value));
-            selectedWeights.forEach(value => params.append('weightClassIds', value));
-            selectedWeapons.forEach(value => params.append('weaponIds', value));
-            params.append('isDuplicate', dupesExcluded);
-            params.append('isInclusionSearch', isInclusionSearch);
-
-            fetch('/generateRandomWeapon?' + params.toString(), {
-                method: 'GET'
-            })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('weaponImage').src = '/weaponImages/Spl3_Weapon_' + data.id + '.png';
-                    document.getElementById('weaponImage').alt = data.weaponName;
-
-                    document.getElementById('subweaponImage').src = '/subweaponImages/Spl3_sub_' + data.subweapon.id + '_b.png';
-                    document.getElementById('subweaponImage').alt = data.subweapon.subweaponName;
-
-                    document.getElementById('specialWeaponImage').src = '/specialWeaponImages/Spl3_spec_' + data.specialWeapon.id + '_b.png';
-                    document.getElementById('specialWeaponImage').alt = data.specialWeapon.specialWeaponName;
-
-                    document.getElementById('randomWeapon').innerText = data.weaponName;
-                })
-                .catch(error => {
-                    console.error('Error:', error)
-                });
-        }
-    </script>
+    <link rel="stylesheet" href="/style/style.css">
 </head>
-<body style="background-color:lightslategray;">
+<body>
 
 <div class="main-container">
     <!-- Left Side: Images and Weapon Name -->
@@ -209,16 +54,19 @@
             <h1>Need more control? Select only the weapons you want:</h1>
             <form id="singleWeaponSearch" onsubmit="submissionHandler(event);">
                 <div>
-                    <!-- Loop through each weapon class/type -->
+                    <!-- Collapsible sections for each weapon type -->
                     <div th:each="weaponClass : ${weaponTypeList}">
-                        <h2 th:text="${weaponClass.weaponTypeName}"></h2>
-                        <div th:each="weapon : ${weaponList}" th:if="${weapon.weaponType.id} == ${weaponClass.id}">
-                            <label>
-                                <input type="checkbox"
-                                       th:value="${weapon.id}"
-                                       th:name="selectedWeapons"/>
-                                <span th:text="${weapon.weaponName}"></span>
-                            </label>
+                        <button type="button" class="collapsible" th:text="${weaponClass.weaponTypeName}"></button>
+                        <div class="collapsible-content">
+                            <div class="grid-layout">
+                                <div th:each="weapon : ${weaponList}"
+                                     th:if="${weapon.weaponType.id} == ${weaponClass.id}">
+                                    <label>
+                                        <input type="checkbox" th:value="${weapon.id}" th:name="selectedWeapons"/>
+                                        <span th:text="${weapon.weaponName}"></span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -227,8 +75,9 @@
                 <input type="submit" value="Gimme a Different One">
             </form>
         </div>
-
     </div>
 </div>
+
+<script src="/javascript/randomizer.js"></script>
 </body>
 </html>

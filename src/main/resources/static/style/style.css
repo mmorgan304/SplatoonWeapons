@@ -1,0 +1,138 @@
+/* Flex container for main layout */
+@font-face {
+    font-family: 'Splatoon2Font';
+    src: url(fonts/Splatoon2Font.woff2) format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Stack columns vertically */
+        height: auto; /* Allow content to dictate height */
+    }
+
+    .left-side, .right-side {
+        width: 100%; /* Full width for stacked layout */
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-color: slategrey;
+}
+
+h1 {
+    font-family: 'Splatoon2Font', sans-serif;
+    font-size: 16px;
+}
+
+/* Left side for images and weapon name */
+.left-side {
+    flex: 1; /* Takes up equal space as right-side */
+    display: flex; /* Use flex to center content */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    padding: 20px;
+    color: white;
+    font-family: 'Splatoon2Font', sans-serif;
+}
+
+/* Right side for tabs and content */
+.right-side {
+    flex: 1; /* Takes up equal space as left-side */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+    font-family: sans-serif;
+    overflow-y: auto; /* Make the right-side content scrollable */
+    max-height: 100vh; /* Lock the maximum height to the viewport height */
+}
+
+/* Styling for the tab buttons */
+.tab {
+    display: flex;
+    justify-content: flex-start; /* Align tabs to the left */
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.tab button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    margin-right: 5px;
+    font-family: 'Splatoon2Font', sans-serif;
+    font-size: 16px;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    font-size: 12px;
+}
+
+.collapsible {
+    background-color: #f1f1f1;
+    color: #444;
+    cursor: pointer;
+    padding: 4px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    font-family: 'Splatoon2Font', sans-serif;
+}
+
+.collapsible:hover {
+    background-color: #ddd;
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding: 0 15px;
+}
+
+.collapsible-content.show {
+    max-height: 500px;
+    padding: 10px 15px;
+    overflow-y: auto; /* Enable scrolling within collapsible sections if needed */
+}
+
+.collapsible-content .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    grid-gap: 5px; /* Space between grid items */
+    align-items: center; /* Align content to the center of each grid cell */
+}
+
+.collapsible-content label {
+    display: flex; /* Use flexbox for label and checkbox */
+    align-items: center; /* Ensure checkbox and text are aligned */
+    gap: 5px; /* Space between checkbox and label text */
+}

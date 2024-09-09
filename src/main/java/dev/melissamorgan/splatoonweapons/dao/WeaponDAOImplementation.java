@@ -132,7 +132,6 @@ public class WeaponDAOImplementation implements WeaponDAO {
         boolean hasCriteria = false;
 
         if (weaponSearch != null) {
-            // Check if any criteria will be appended before adding the opening parenthesis
             if ((weaponSearch.getWeaponTypeIds() != null && !weaponSearch.getWeaponTypeIds().isEmpty()) ||
                     (weaponSearch.getSubweaponIds() != null && !weaponSearch.getSubweaponIds().isEmpty()) ||
                     (weaponSearch.getSpecialWeaponIds() != null && !weaponSearch.getSpecialWeaponIds().isEmpty()) ||
