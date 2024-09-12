@@ -37,3 +37,13 @@ Sept 9, 2024
 Continuing to style. Collapsible tabs have been added to the single weapon search, and I finally got it locked so that
 the content doesn't flow off the top of the screen. At this point, it's just colors, margins, and finding a sick button
 for the generate weapon submission. I found a Splatoon font.
+
+Sept 11, 2024
+------------------
+Main container styling is mostly done. Want to add a "check all" box to the single weapon selection for user convenience.
+I still also want to add dynamic color changing for the splat images and I'd like make the checkboxes fancier, but that
+is extra spice that is not necessary for launch. Next is adding the top nav bar.
+
+I'm also reconsidering the whitelist search conditions. After stepping away from it and coming back to actually use it,
+I think whitelist search needs to use AND logic, e.g. "Give me only shooters and rollers that have splat bombs as their
+subs", instead of the OR logic of, "Give me all shooters and rollers and also any splat bomb weapons."

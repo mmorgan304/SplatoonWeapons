@@ -1,71 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>Weapon Search Form</title>
 </head>
 <body>
 <form id="categorySearches" onsubmit="submissionHandler(event);">
-    <div>
-        <p>
-            <label>Weapon Types</label>
-        </p>
-        <p>
-                    <span th:each="type : ${weaponTypeList}">
-                        <input type="checkbox"
-                               th:text="${type.weaponTypeName}"
-                               th:value="${type.id}"
-                               th:name="selectedTypes"/>
-                    </span>
-        </p>
+    <button type="button" class="collapsible">Weapon Types</button>
+    <div class="collapsible-content">
+        <div class="grid-layout">
+            <div th:each="type : ${weaponTypeList}">
+                <label>
+                    <input type="checkbox" th:value="${type.id}" th:name="selectedTypes"/>
+                    <span th:text="${type.weaponTypeName}"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="collapsible">Subweapons</button>
+    <div class="collapsible-content">
+        <div class="grid-layout">
+            <div th:each="subweapon : ${subweaponsList}">
+                <label>
+                    <input type="checkbox" th:value="${subweapon.id}" th:name="selectedSubweapons"/>
+                    <span th:text="${subweapon.subweaponName}"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="collapsible">Special Weapons</button>
+    <div class="collapsible-content">
+        <div class="grid-layout">
+            <div th:each="special : ${specialWeaponsList}">
+                <label>
+                    <input type="checkbox" th:value="${special.id}" th:name="selectedSpecials"/>
+                    <span th:text="${special.specialWeaponName}"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="collapsible">Weight Class</button>
+    <div class="collapsible-content">
+        <div class="grid-layout">
+            <div th:each="weightClass : ${weightList}">
+                <label>
+                    <input type="checkbox" th:value="${weightClass.id}" th:name="selectedWeights"/>
+                    <span th:text="${weightClass.weightName}"></span>
+                </label>
+            </div>
+        </div>
     </div>
     <div>
-        <p>
-            <label>Subweapons</label>
-        </p>
-        <p>
-                <span th:each="subweapon : ${subweaponsList}">
-                    <input type="checkbox"
-                           th:text="${subweapon.subweaponName}"
-                           th:value="${subweapon.id}"
-                           th:name="selectedSubweapons"/>
-                </span>
-        </p>
+        <label>
+            <input type="checkbox" name="dupesExcluded"/>
+            Exclude Duplicates
+        </label>
     </div>
-    <div>
-        <p>
-            <label>Special Weapons</label>
-        </p>
-        <p>
-                <span th:each="special : ${specialWeaponsList}">
-                    <input type="checkbox"
-                           th:text="${special.specialWeaponName}"
-                           th:value="${special.id}"
-                           th:name="selectedSpecials"/>
-                </span>
-        </p>
-    </div>
-    <div>
-        <p>
-            <label>Weight Class</label>
-        </p>
-        <p>
-                <span th:each="weightClass : ${weightList}">
-                    <input type="checkbox"
-                           th:text="${weightClass.weightName}"
-                           th:value="${weightClass.id}"
-                           th:name="selectedWeights"/>
-                </span>
-        </p>
-    </div>
-    <div>
-                <span>
-                    <label>Exclude Duplicates
-                    <input type="checkbox" name="dupesExcluded"/>
-                    </label>
-                </span>
-    </div>
-    <input type="hidden" name="isInclusionSearch"  th:value="${isInclusionSearch}">
-    <input type="submit" value="Gimme a Different One">
+    <input type="hidden" name="isInclusionSearch" th:value="${isInclusionSearch}">
+    <input class="splat-button" type="submit" value="Gimme a Different One">
 </form>
 </body>
 </html>

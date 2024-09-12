@@ -4,12 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (var i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function () {
-            // Close any currently open collapsible content
-            // var openContent = document.querySelector(".collapsible-content.show");
-            // if (openContent && openContent !== this.nextElementSibling) {
-            //     openContent.style.maxHeight = null;
-            //     openContent.classList.remove("show");
-            // }
 
             // Toggle the clicked collapsible section
             var content = this.nextElementSibling;
@@ -35,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
         defaultTab.click();
     }
 });
-
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("defaultOpen").click(); // Automatically click the default tab
