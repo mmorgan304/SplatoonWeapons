@@ -54,6 +54,33 @@ function openSearch(evt, weaponSearch) {
     evt.currentTarget.className += " active";
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const selectAllCheckbox = document.getElementById('select-all');
+    const weaponCheckboxes = document.querySelectorAll('.weapon-checkbox');
+
+    // Function to check/uncheck all checkboxes based on "Select All"
+    selectAllCheckbox.addEventListener('change', function() {
+        weaponCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+    });
+
+    // Function to uncheck "Select All" if any checkbox is unchecked
+    weaponCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            if (!this.checked) {
+                selectAllCheckbox.checked = false;
+            } else {
+                // If all checkboxes are checked, also check "Select All"
+                const allChecked = Array.from(weaponCheckboxes).every(function(cb) {
+                    return cb.checked;
+                });
+                selectAllCheckbox.checked = allChecked;
+            }
+        });
+    });
+});
+
 function submissionHandler(event) {
     event.preventDefault();
     const form = event.target;

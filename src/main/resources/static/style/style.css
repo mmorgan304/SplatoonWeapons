@@ -6,16 +6,12 @@
     font-style: normal;
 }
 
+/*768px*/
 /* Media query for smaller screens */
 @media (max-width: 768px) {
-    .main-container {
+    .container {
         flex-direction: column; /* Stack columns vertically */
-        height: auto; /* Allow content to dictate height */
-    }
-
-    .left-side, .right-side {
-        width: 100%; /* Full width for stacked layout */
-        padding: 10px; /* Reduce padding for smaller screens */
+        height: 100vh; /* Allow content to dictate height */
     }
 }
 
@@ -57,6 +53,95 @@ svg {
     overflow: hidden;
 }
 
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-family: 'Splatoon2Font', sans-serif;
+    font-size: 14px;
+    z-index: 3;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.nav-list, .right-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list li, .right-nav li {
+    margin-right: 20px;
+}
+
+.nav-list li:last-child {
+    margin-right: 0;
+}
+
+.right-nav {
+    margin-left: auto;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position the dropdown below the "Links" */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.85); /* Dark background */
+    padding: 10px;
+    list-style: none;
+    margin: 0;
+    z-index: 4;
+}
+
+.dropdown-menu li {
+    margin-bottom: 5px;
+}
+
+.dropdown-menu li:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-menu a {
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Show dropdown menu on hover */
+.dropdown:hover .info-content,
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.info-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 4;
+    width: 300px;
+    font-family: Montserrat, sans-serif;
+}
+
 /* Left side for images and weapon name */
 .left-side {
     flex: 1; /* Takes up equal space as right-side */
@@ -79,7 +164,7 @@ svg {
     color: white;
     font-family: sans-serif;
     overflow-y: auto; /* Make the right-side content scrollable */
-    max-height: 100vh; /* Lock the maximum height to the viewport height */
+    max-height: 90vh; /* Lock the maximum height to the viewport height */
     position: relative;
     z-index: 3;
 }
@@ -94,7 +179,7 @@ svg {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 12px 12px;
     transition: 0.3s;
     margin-right: 5px;
     font-family: 'Splatoon2Font', sans-serif;
@@ -115,6 +200,7 @@ svg {
     padding: 6px 12px;
     border: 1px solid #ccc;
     font-size: 12px;
+    font-family: 'Montserrat', serif;
     background-color: rgba(255, 255, 255, 0.2);
 }
 .tabcontent .grid-layout {
@@ -124,11 +210,22 @@ svg {
     align-items: center; /* Align content to the center of each grid cell */
 }
 
+.header-inline {
+    display: flex;
+    justify-content: space-between; /* Push h1 left and checkbox right */
+    align-items: center; /* Vertically center the checkbox with h1 */
+    width: 100%; /* Make the container full width */
+}
+
+.header-inline h1 {
+    margin: 0; /* Optional: Remove extra margin from h1 */
+}
+
 .collapsible {
     background-color: #ccc;
     color: black;
     cursor: pointer;
-    padding: 4px;
+    padding: 3px;
     width: 100%;
     border: none;
     text-align: left;
@@ -137,6 +234,7 @@ svg {
     transition: background-color 0.2s ease;
     font-family: 'Splatoon2Font', sans-serif;
 }
+
 
 .collapsible:hover {
     background-color: #ddd;
@@ -167,6 +265,8 @@ svg {
     align-items: center; /* Ensure checkbox and text are aligned */
     gap: 5px; /* Space between checkbox and label text */
 }
+
+.weapon-checkbox {}
 
 .splat-button {
     height: 15vh;

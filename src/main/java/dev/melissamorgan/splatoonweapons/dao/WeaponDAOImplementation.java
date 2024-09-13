@@ -144,22 +144,22 @@ public class WeaponDAOImplementation implements WeaponDAO {
                 hasCriteria = true;
             }
             if (weaponSearch.getSubweaponIds() != null && !weaponSearch.getSubweaponIds().isEmpty()) {
-                if (hasCriteria) queryBuilder.append(" OR");
+                if (hasCriteria) queryBuilder.append(" AND");
                 queryBuilder.append(" w.subweapon.id IN :subweaponIds");
                 hasCriteria = true;
             }
             if (weaponSearch.getSpecialWeaponIds() != null && !weaponSearch.getSpecialWeaponIds().isEmpty()) {
-                if (hasCriteria) queryBuilder.append(" OR");
+                if (hasCriteria) queryBuilder.append(" AND");
                 queryBuilder.append(" w.specialWeapon.id IN :specialWeaponIds");
                 hasCriteria = true;
             }
             if (weaponSearch.getWeightClassIds() != null && !weaponSearch.getWeightClassIds().isEmpty()) {
-                if (hasCriteria) queryBuilder.append(" OR");
+                if (hasCriteria) queryBuilder.append(" AND");
                 queryBuilder.append(" w.weight.id IN :weightClassIds");
                 hasCriteria = true;
             }
             if (weaponSearch.getWeaponIds() != null && !weaponSearch.getWeaponIds().isEmpty()) {
-                if (hasCriteria) queryBuilder.append(" OR");
+                if (hasCriteria) queryBuilder.append(" AND");
                 queryBuilder.append(" w.id IN :weaponIds");
                 hasCriteria = true;
             }

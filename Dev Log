@@ -47,3 +47,7 @@ is extra spice that is not necessary for launch. Next is adding the top nav bar.
 I'm also reconsidering the whitelist search conditions. After stepping away from it and coming back to actually use it,
 I think whitelist search needs to use AND logic, e.g. "Give me only shooters and rollers that have splat bombs as their
 subs", instead of the OR logic of, "Give me all shooters and rollers and also any splat bomb weapons."
+
+Sept 12, 2024
+-----------------
+Navbar is complete. Now I just need to add the Dev Notes page, and the site is complete enough to launch.

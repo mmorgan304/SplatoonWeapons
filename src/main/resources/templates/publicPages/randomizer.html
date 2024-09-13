@@ -6,25 +6,36 @@
     <meta charset="UTF-8">
     <title>Splatoon 3 Weapon Randomizer</title>
     <link rel="stylesheet" href="/style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-<!--<header>-->
-<!--    <nav>-->
-<!--        <ul>-->
-<!--            <li>How to use</li>-->
-<!--            <li>Squid News</li>-->
-<!--            <li>Dev Notes</li>-->
-<!--            <li>Links-->
-<!--                <ul>-->
-<!--                    <li>Squidboards</li>-->
-<!--                    <li>sendou.ink</li>-->
-<!--                    <li>stat.ink</li>-->
-<!--                </ul>-->
-<!--            </li>-->
-<!--            <li>github</li>-->
-<!--        </ul>-->
-<!--    </nav>-->
-<!--</header>-->
+<header>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="dropdown">How to use
+                <div th:replace="~{fragments/howtouse}"></div>
+            </li>
+            <li class="dropdown">Squid News
+                <ul class="dropdown-menu">
+                    <li>Coming Soon!</li>
+                </ul>
+            </li>
+            <li class="dropdown">Links
+                <ul class="dropdown-menu">
+                    <li><a href="https://squidboards.com/" target="_blank">Squidboards</a></li>
+                    <li><a href="https://sendou.ink/" target="_blank">sendou.ink</a></li>
+                    <li><a href="https://stat.ink/" target="_blank">stat.ink</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="right-nav">
+            <li>Dev Notes</li>
+            <li><a href="https://github.com/mmorgan304/SplatoonWeapons" target="_blank">github</a></li>
+        </ul>
+    </nav>
+</header>
 
 <main class="container">
     <svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
@@ -55,8 +66,8 @@
     <div class="right-side">
         <!-- Tab Buttons -->
         <div class="tab">
-            <button class="tablinks" onclick="openSearch(event, 'blacklistTab')" id="defaultOpen">Blacklist</button>
-            <button class="tablinks" onclick="openSearch(event, 'whitelistTab')">Whitelist</button>
+            <button class="tablinks" onclick="openSearch(event, 'whitelistTab')" id="defaultOpen">Whitelist</button>
+            <button class="tablinks" onclick="openSearch(event, 'blacklistTab')">Blacklist</button>
             <button class="tablinks" onclick="openSearch(event, 'singleWeaponSearchTab')">Single Weapon Selection
             </button>
         </div>
@@ -73,10 +84,15 @@
         </div>
 
         <div id="singleWeaponSearchTab" class="tabcontent">
-            <h1>Need more control? Select only the weapons you want:</h1>
+            <div class="header-inline">
+                <h1>Need more control? Select only the weapons you want:</h1>
+                <label>
+                    <input id="select-all" type="checkbox">
+                    <span>Select All</span>
+                </label>
+            </div>
             <form id="singleWeaponSearch" onsubmit="submissionHandler(event);">
                 <div>
-                    <!-- Collapsible sections for each weapon type -->
                     <div th:each="weaponClass : ${weaponTypeList}">
                         <button type="button" class="collapsible" th:text="${weaponClass.weaponTypeName}+'s'"></button>
                         <div class="collapsible-content">
@@ -84,7 +100,7 @@
                                 <div th:each="weapon : ${weaponList}"
                                      th:if="${weapon.weaponType.id} == ${weaponClass.id}">
                                     <label>
-                                        <input type="checkbox" th:value="${weapon.id}" th:name="selectedWeapons"/>
+                                        <input class="weapon-checkbox" type="checkbox" th:value="${weapon.id}" th:name="selectedWeapons"/>
                                         <span th:text="${weapon.weaponName}"></span>
                                     </label>
                                 </div>
@@ -93,7 +109,7 @@
                     </div>
                 </div>
                 <input type="hidden" name="isInclusionSearch" value=true>
-                <input class="splat-button" type="submit" value="Gimme a Different One">
+                <input class="splat-button" type="submit" value="Gimme a Different One!">
             </form>
         </div>
     </div>
