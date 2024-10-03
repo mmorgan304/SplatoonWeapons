@@ -20,11 +20,23 @@ h1 {
     font-size: 16px;
 }
 
+h2 {
+    font-family: 'Splatoon2Font', sans-serif;
+    font-size: 16px;
+}
+
+h3 {
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+}
+
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     box-sizing: border-box;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
 }
 
 svg {
@@ -68,6 +80,7 @@ svg {
     z-index: 3;
     padding: 0 20px;
     box-sizing: border-box;
+    cursor: default;
 }
 
 .nav-list, .right-nav {
@@ -103,6 +116,7 @@ svg {
     list-style: none;
     margin: 0;
     z-index: 4;
+    width: min(85px);
 }
 
 .dropdown-menu li {
@@ -136,7 +150,6 @@ svg {
     background-color: rgba(0, 0, 0, 0.85);
     color: white;
     padding: 10px;
-    border-radius: 5px;
     z-index: 4;
     width: 300px;
     font-family: Montserrat, sans-serif;
@@ -283,4 +296,15 @@ svg {
 
 .splat-button:active {
     transform: scale(0.95); /* Slightly shrink the button when clicked */
+}
+
+.text-content {
+    padding: 20px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    position: relative;
+    z-index: 3;
+    overflow-y: auto;
+    max-height: 80vh;
 }

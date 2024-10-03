@@ -57,4 +57,9 @@ public class MainController {
         return weaponService.getRandomWeapon(weaponSearch);
     }
 
+    @GetMapping("/devnotes")
+    public String devNotes() {
+        return "publicPages/devnotes";
+    }
+
 }

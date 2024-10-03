@@ -76,4 +76,5 @@ public class WeaponServiceImplementation implements WeaponService {
     public Weapon getRandomWeapon(WeaponSearch weaponSearch) {
         return weaponDao.getRandomWeapon(weaponSearch);
     }
+
 }
