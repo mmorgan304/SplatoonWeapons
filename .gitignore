@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### Data Security ###
-application.properties
+src/main/resources/application.properties
 ### testing ###
