@@ -51,3 +51,8 @@ subs", instead of the OR logic of, "Give me all shooters and rollers and also an
 Sept 12, 2024
 -----------------
 Navbar is complete. Now I just need to add the Dev Notes page, and the site is complete enough to launch.
+
+Oct. 14, 2024
+-----------------
+Spring Security should be implemented well enough to protect admin pages. Admin and login pages need styling and a
+redirect from logout to the randomizer.

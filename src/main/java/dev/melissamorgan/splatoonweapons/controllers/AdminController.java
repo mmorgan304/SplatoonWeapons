@@ -25,6 +25,11 @@ public class AdminController {
         model.addAttribute("weaponList", weaponService.populateAllWeapons());
     }
 
+    @RequestMapping("/home")
+    public String home(Model model) {
+        return "adminPages/home";
+    }
+
     @GetMapping("/addweapon")
     public String addWeapon(Model model) {
         Weapon weapon = new Weapon();

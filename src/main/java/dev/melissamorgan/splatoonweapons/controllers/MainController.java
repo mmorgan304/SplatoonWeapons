@@ -34,6 +34,11 @@ public class MainController {
         return "publicPages/randomizer";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "publicPages/login";
+    }
+
     @GetMapping("/generateRandomWeapon")
     @ResponseBody
     public Weapon generateRandomWeapon(

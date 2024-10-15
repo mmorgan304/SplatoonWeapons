@@ -33,5 +33,4 @@ build/
 .vscode/
 
 ### Data Security ###
-!**/src/main/resources/application.properties
-### blah blah
+!/src/main/resources/application.properties

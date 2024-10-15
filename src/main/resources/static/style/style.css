@@ -39,6 +39,13 @@ html, body {
     font-size: 14px;
 }
 
+a:link {
+    color: #ffffff
+}
+a:visited {
+    color: #ffffff;
+}
+
 svg {
     position: absolute;
     top: -85%;
