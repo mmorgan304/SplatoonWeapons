@@ -5,86 +5,112 @@
 <html lang="en" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Splatoon Weapons - Add Weapon</title>
+    <title>Splatoon Weapons - Add/Modify Weapon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-Add Weapon
-<form action="#" th:action="@{/admin/processweapon}" th:object="${newWeapon}" method="post">
-    <table>
-        <tr>
-            <td>
-                <label for="weaponName">Weapon Name:</label>
-            </td>
-            <td>
-                <input type="text" th:field="*{weaponName}" autofocus="autofocus" id="weaponName"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="weaponType">Class:</label>
-            </td>
-            <td>
-                <select th:field="*{weaponType.id}" id="weaponType">
+<div class="container mt-4">
+    <h1 class="mb-4">Add/Modify Weapon</h1>
+    <form action="#" th:action="@{/admin/processweapon}" th:object="${newWeapon}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label for="weaponName" class="form-label fw-bold">Weapon Name</label>
+                <input type="text" th:field="*{weaponName}" autofocus="autofocus" class="form-control" id="weaponName" placeholder="e.g., Splattershot"/>
+            </div>
+            <div class="col-md-6">
+                <label for="secretName" class="form-label fw-bold">Internal / Secret Name</label>
+                <input type="text" th:field="*{secretName}" class="form-control" id="secretName" placeholder=""/>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label for="weaponType" class="form-label fw-bold">Weapon Class</label>
+                <select th:field="*{weaponType.id}" class="form-select" id="weaponType">
                     <option th:each="option : ${weaponTypeList}"
                             th:value="${option.id}"
                             th:text="${option.weaponTypeName}"></option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="subweapon">Sub Weapon:</label>
-            </td>
-            <td>
-                <select th:field="*{subweapon.id}" id="subweapon">
-                    <option th:each="option : ${subweaponsList}"
-                            th:value="${option.id}"
-                            th:text="${option.subweaponName}"></option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="specialWeapon">Special Weapon:</label>
-            </td>
-            <td>
-                <select th:field="*{specialWeapon.id}" id="specialWeapon">
-                    <option th:each="option : ${specialWeaponsList}"
-                            th:value="${option.id}"
-                            th:text="${option.specialWeaponName}"></option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="matchmakingRange">Matchmaking Range:</label>
-            </td>
-            <td>
-                <input type="text" th:field="*{matchmakingRange}" id="matchmakingRange"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="weight">Weight class:</label>
-            </td>
-            <td>
-                <select th:field="*{weight.id}" id="weight">
+            </div>
+            <div class="col-md-6">
+                <label for="weight" class="form-label fw-bold">Weight Class</label>
+                <select th:field="*{weight.id}" class="form-select" id="weight">
                     <option th:each="option : ${weightList}"
                             th:value="${option.id}"
                             th:text="${option.weightName}"></option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="specialPoints">Points for Special:</label>
-            </td>
-            <td>
-                <input type="text" th:field="*{specialPoints}" id="specialPoints"/>
-            </td>
-        </tr>
-    </table>
-    <input class="splat-button" type="submit" value="Add Weapon">
-</form>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <label for="subweapon" class="form-label fw-bold">Sub Weapon</label>
+                <select th:field="*{subweapon.id}" class="form-select" id="subweapon">
+                    <option th:each="option : ${subweaponsList}"
+                            th:value="${option.id}"
+                            th:text="${option.subweaponName}"></option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="specialWeapon" class="form-label fw-bold">Special Weapon</label>
+                <select th:field="*{specialWeapon.id}" class="form-select" id="specialWeapon">
+                    <option th:each="option : ${specialWeaponsList}"
+                            th:value="${option.id}"
+                            th:text="${option.specialWeaponName}"></option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="specialPoints" class="form-label fw-bold">Points for Special</label>
+                <input type="text" th:field="*{specialPoints}" class="form-control" id="specialPoints" placeholder=""/>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label for="matchmakingRange" class="form-label fw-bold">Matchmaking Range</label>
+                <input type="text" th:field="*{matchmakingRange}" class="form-control" id="matchmakingRange" placeholder="Internal matchmaking bracket score"/>
+            </div>
+            <div class="col-md-6">
+                <label for="rangeActual" class="form-label fw-bold">In-Game Range</label>
+                <input type="text" th:field="*{rangeActual}" class="form-control" id="rangeActual" placeholder="Displayed 'Range'"/>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4 align-items-end">
+            <div class="col-md-3">
+                <label for="maxDamage" class="form-label fw-bold">Max Damage</label>
+                <input type="text" th:field="*{maxDamage}" class="form-control" id="maxDamage"/>
+            </div>
+            <div class="col-md-3">
+                <label for="minDamage" class="form-label fw-bold">Min Damage</label>
+                <input type="text" th:field="*{minDamage}" class="form-control" id="minDamage"/>
+            </div>
+            <div class="col-md-3">
+                <label for="fireRate" class="form-label fw-bold">Fire Rate</label>
+                <input type="text" th:field="*{fireRate}" class="form-control" id="fireRate" placeholder="# of frames between shots"/>
+            </div>
+            <div class="col-md-3">
+                <label for="avgPaintPerMatch" class="form-label fw-bold">Avg Paint Per Match</label>
+                <input type="text" th:field="*{avgPaintPerMatch}" class="form-control" id="avgPaintPerMatch"/>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-12">
+                <div class="form-check form-switch bg-light p-3 rounded border">
+                    <input type="checkbox" th:field="*{hasOneshot}" class="form-check-input ms-0 me-2" id="hasOneshot"/>
+                    <label class="form-check-label fw-bold" for="hasOneshot">Weapon can one-shot opponents</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-block text-end">
+            <input class="btn btn-primary btn-lg splat-button px-5" type="submit" value="Add/Modify Weapon">
+        </div>
+
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

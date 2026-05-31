@@ -3,17 +3,17 @@ package dev.melissamorgan.splatoonweapons.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "inkfish")
+@Table(name = "inkfish", schema = "splatoon_3_weapons")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "name", length = 45)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "color_chip", length = 45)
+    @Column(name = "color_chip")
     private String colorChip;
 
     public Integer getId() {

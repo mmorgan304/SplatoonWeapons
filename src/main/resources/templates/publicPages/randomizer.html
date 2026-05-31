@@ -77,7 +77,7 @@
                     <div th:each="weaponClass : ${weaponTypeList}">
 <!--                        change pluralization to a more scalable option later-->
                         <button type="button" class="collapsible"
-                                th:text="${weaponClass.weaponTypeName} + (${weaponClass.weaponTypeName == 'Brush'} ? 'es' : 's')">
+                                th:text="${weaponClass.weaponTypeName}">
                         </button>
                         <div class="collapsible-content">
                             <div class="grid-layout">

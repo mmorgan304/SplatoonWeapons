@@ -1,8 +1,11 @@
 package dev.melissamorgan.splatoonweapons.controllers;
 
+import dev.melissamorgan.splatoonweapons.entities.SpecialWeapon;
+import dev.melissamorgan.splatoonweapons.entities.Subweapon;
 import dev.melissamorgan.splatoonweapons.entities.Weapon;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 import dev.melissamorgan.splatoonweapons.service.WeaponService;
+import org.springframework.beans.factory.BeanRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +33,17 @@ public class MainController {
     @GetMapping("/randomizer")
     public String randomizer(Model model) {
         Weapon randomWeapon = weaponService.getRandomWeapon(new WeaponSearch());
+        if (randomWeapon == null) {
+            // if db returns null, create dummy data
+            Subweapon dummySub = new Subweapon();
+            dummySub.setId(0);
+            SpecialWeapon dummySpec = new SpecialWeapon();
+            dummySpec.setId(0);
+            randomWeapon = new Weapon();
+            randomWeapon.setId(0);
+            randomWeapon.setSubweapon(dummySub);
+            randomWeapon.setSpecialWeapon(dummySpec);
+        }
         model.addAttribute("randomWeapon", randomWeapon);
         return "publicPages/randomizer";
     }

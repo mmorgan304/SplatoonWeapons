@@ -23,6 +23,7 @@ public interface WeaponService {
     SpecialWeapon getSpecialWeaponById(Integer id);
     WeaponType getWeaponTypeById(Integer id);
     Weight getWeightById(Integer id);
+    Weapon getWeaponById(Integer id);
 
     Weapon getRandomWeapon(WeaponSearch inclusionSearch);
 }

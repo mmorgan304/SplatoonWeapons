@@ -5,10 +5,7 @@ import dev.melissamorgan.splatoonweapons.service.WeaponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -33,6 +30,13 @@ public class AdminController {
     @GetMapping("/addweapon")
     public String addWeapon(Model model) {
         Weapon weapon = new Weapon();
+        model.addAttribute("newWeapon", weapon);
+        return "adminPages/addweapon";
+    }
+
+    @GetMapping("/modifyweapon/{id}")
+    public String modWeapon(@PathVariable("id") Integer id, Model model) {
+        Weapon weapon = weaponService.getWeaponById(id);
         model.addAttribute("newWeapon", weapon);
         return "adminPages/addweapon";
     }

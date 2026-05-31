@@ -34,3 +34,5 @@ build/
 
 ### Data Security ###
 src/main/resources/application.properties
+src/main/resources/application-dev.properties
+Milestone1.pem

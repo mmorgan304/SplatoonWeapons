@@ -48,8 +48,12 @@ public class WeaponDAOImplementation implements WeaponDAO {
      * Object manipulation methods
      ****************************/
     @Override
-    public void saveWeapon(Weapon newWeapon) {
-        entityManager.persist(newWeapon);
+    public void saveWeapon(Weapon weapon) {
+        if (weapon.getId() == null || weapon.getId() == 0) {
+            entityManager.persist(weapon);
+        } else {
+            entityManager.merge(weapon);
+        }
     }
 
     /**************************
@@ -73,6 +77,11 @@ public class WeaponDAOImplementation implements WeaponDAO {
     @Override
     public Weight getWeightById(Integer id) {
         return entityManager.find(Weight.class, id);
+    }
+
+    @Override
+    public Weapon getWeaponById(Integer id) {
+        return entityManager.find(Weapon.class, id);
     }
 
     @Override
@@ -102,7 +111,7 @@ public class WeaponDAOImplementation implements WeaponDAO {
         }
         weaponList = query.getResultList();
         Collections.shuffle(weaponList);
-        return weaponList.isEmpty() ? null : weaponList.getFirst();
+        return weaponList.isEmpty() ? null : weaponList.get(0);
     }
 
     private static StringBuilder exclusiveQuery(WeaponSearch weaponSearch) {

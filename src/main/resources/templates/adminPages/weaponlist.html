@@ -2,40 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Splatoon Weapons - Weapon List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-<p>Weapon List</p>
-<p><a class="splat-button" href="addWeapon">Add Another</a></p>
-<table>
-    <thead>
-    <tr>
-        <th>id</th>
-        <th>Weapon</th>
-        <th>Sub Weapon</th>
-        <th>Special Weapon</th>
-        <th>Weapon Class</th>
-        <th>Weight Class</th>
-        <th>Matchmaking Range</th>
-        <th>Points for Special</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${weaponList.isEmpty()}">
-        <td colspan="6"> No Weapons</td>
-    </tr>
-    <tr th:each="weapon : ${weaponList}">
-        <td><span th:text="${weapon.id}"></span></td>
-        <td><span th:text="${weapon.weaponName}"></span></td>
-        <td><span th:text="${weapon.subweapon.subweaponName}"></span></td>
-        <td><span th:text="${weapon.specialWeapon.specialWeaponName}"></span></td>
-        <td><span th:text="${weapon.weaponType.weaponTypeName}"></span></td>
-        <td><span th:text="${weapon.weight.weightName}"></span></td>
-        <td><span th:text="${weapon.matchmakingRange}"></span></td>
-        <td><span th:text="${weapon.specialPoints}"></span></td>
-    </tr>
-    </tbody>
-</table>
-<a class="splat-button" href="addweapon">Add Another</a>
+<div class="container-xxl mt-4">
+    <h1 class="mb-4">Weapon List</h1>
+    <p><a class="btn btn-sm btn-outline-primary" href="addweapon">Add Another</a></p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Weapon</th>
+            <th>Internal Name</th>
+            <th>Sub Weapon</th>
+            <th>Special Weapon</th>
+            <th>Weapon Class</th>
+            <th>Weight Class</th>
+            <th>Matchmaking Range</th>
+            <th>Actual Range</th>
+            <th>Points for Special</th>
+            <th>Max Damage</th>
+            <th>Min Damage</th>
+            <th>Fire Rate</th>
+            <th>Avg Paint / Match</th>
+            <th>One-Shot?</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${weaponList.isEmpty()}">
+            <td colspan="16">No Weapons Found</td>
+        </tr>
+        <tr th:each="weapon : ${weaponList}">
+            <td><span th:text="${weapon.id}"></span></td>
+            <td><span th:text="${weapon.weaponName}"></span></td>
+            <td><span th:text="${weapon.secretName}"></span></td>
+            <td><span th:text="${weapon.subweapon.subweaponName}"></span></td>
+            <td><span th:text="${weapon.specialWeapon.specialWeaponName}"></span></td>
+            <td><span th:text="${weapon.weaponType.weaponTypeName}"></span></td>
+            <td><span th:text="${weapon.weight.weightName}"></span></td>
+            <td><span th:text="${weapon.matchmakingRange}"></span></td>
+            <td><span th:text="${weapon.rangeActual}"></span></td>
+            <td><span th:text="${weapon.specialPoints}"></span></td>
+            <td><span th:text="${weapon.maxDamage}"></span></td>
+            <td><span th:text="${weapon.minDamage}"></span></td>
+            <td><span th:text="${weapon.fireRate}"></span></td>
+            <td><span th:text="${weapon.avgPaintPerMatch}"></span></td>
+            <td><span th:text="${weapon.hasOneshot}"></span></td>
+            <td>
+                <a th:href="@{/admin/modifyweapon/{id}(id=${weapon.id})}"
+                   class="btn btn-sm btn-outline-primary">
+                    Edit
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-sm btn-outline-primary" href="addweapon">Add Another</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
 </html>
