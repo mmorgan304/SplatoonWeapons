@@ -1,26 +1,27 @@
-<!--shouldn't need to worry about crsf token, because thymeleaf should take care of it:-->
-<!--https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html#csrf-integration-form-->
-
 <!DOCTYPE html>
-<html lang="en" xmlns:form="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Splatoon Weapons - Add/Modify Weapon</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
 <div class="container mt-4">
     <h1 class="mb-4">Add/Modify Weapon</h1>
     <form action="#" th:action="@{/admin/processweapon}" th:object="${newWeapon}" method="post">
-        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{id}"/>
+
         <div class="row g-3 mb-4">
             <div class="col-md-6">
                 <label for="weaponName" class="form-label fw-bold">Weapon Name</label>
-                <input type="text" th:field="*{weaponName}" autofocus="autofocus" class="form-control" id="weaponName" placeholder="e.g., Splattershot"/>
+                <input type="text" th:field="*{weaponName}" autofocus="autofocus" class="form-control" id="weaponName"
+                       placeholder="e.g., Splattershot"/>
             </div>
             <div class="col-md-6">
                 <label for="secretName" class="form-label fw-bold">Internal / Secret Name</label>
-                <input type="text" th:field="*{secretName}" class="form-control" id="secretName" placeholder=""/>
+                <input type="text" th:field="*{secretName}" class="form-control" id="secretName"
+                       placeholder=""/>
             </div>
         </div>
 
@@ -62,55 +63,224 @@
             </div>
             <div class="col-md-4">
                 <label for="specialPoints" class="form-label fw-bold">Points for Special</label>
-                <input type="text" th:field="*{specialPoints}" class="form-control" id="specialPoints" placeholder=""/>
+                <input type="number" th:field="*{specialPoints}" class="form-control" id="specialPoints"
+                       placeholder="e.g., 190"/>
             </div>
         </div>
 
         <div class="row g-3 mb-4">
             <div class="col-md-6">
                 <label for="matchmakingRange" class="form-label fw-bold">Matchmaking Range</label>
-                <input type="text" th:field="*{matchmakingRange}" class="form-control" id="matchmakingRange" placeholder="Internal matchmaking bracket score"/>
+                <input type="text" th:field="*{matchmakingRange}" class="form-control" id="matchmakingRange"
+                       placeholder="Internal matchmaking bracket score"/>
             </div>
             <div class="col-md-6">
                 <label for="rangeActual" class="form-label fw-bold">In-Game Range</label>
-                <input type="text" th:field="*{rangeActual}" class="form-control" id="rangeActual" placeholder="Displayed 'Range'"/>
+                <input type="text" th:field="*{rangeActual}" class="form-control" id="rangeActual"
+                       placeholder="Displayed 'Range' metric"/>
             </div>
         </div>
 
-        <div class="row g-3 mb-4 align-items-end">
-            <div class="col-md-3">
-                <label for="maxDamage" class="form-label fw-bold">Max Damage</label>
-                <input type="text" th:field="*{maxDamage}" class="form-control" id="maxDamage"/>
-            </div>
-            <div class="col-md-3">
-                <label for="minDamage" class="form-label fw-bold">Min Damage</label>
-                <input type="text" th:field="*{minDamage}" class="form-control" id="minDamage"/>
-            </div>
-            <div class="col-md-3">
-                <label for="fireRate" class="form-label fw-bold">Fire Rate</label>
-                <input type="text" th:field="*{fireRate}" class="form-control" id="fireRate" placeholder="# of frames between shots"/>
-            </div>
-            <div class="col-md-3">
-                <label for="avgPaintPerMatch" class="form-label fw-bold">Avg Paint Per Match</label>
-                <input type="text" th:field="*{avgPaintPerMatch}" class="form-control" id="avgPaintPerMatch"/>
-            </div>
-        </div>
+        <div class="border rounded p-4 bg-light mb-4">
 
-        <div class="row g-3 mb-4">
-            <div class="col-12">
-                <div class="form-check form-switch bg-light p-3 rounded border">
-                    <input type="checkbox" th:field="*{hasOneshot}" class="form-check-input ms-0 me-2" id="hasOneshot"/>
-                    <label class="form-check-label fw-bold" for="hasOneshot">Weapon can one-shot opponents</label>
+            <div style="display: none;">
+                <select id="firingModeOptionsTemplate">
+                    <option value="">-- Select Mode --</option>
+                    <option th:each="option : ${firingModeList}"
+                            th:value="${option.firingModeName}"
+                            th:text="${option.firingModeName}"></option>
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0 text-dark fw-bold">Firing Profiles</h4>
+                <button type="button" class="btn btn-sm btn-success" id="addProfileBtn">
+                    + Add Firing Profile
+                </button>
+            </div>
+
+            <div id="firingProfilesContainer">
+                <div th:each="profile, stat : *{firingModes}"
+                     class="card profile-card mb-3 border-secondary-subtle shadow-sm">
+                    <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center py-2">
+                        <span class="fw-bold profile-title" th:text="'Profile #' + (${stat.count})">Profile #1</span>
+                        <button type="button" class="btn btn-sm btn-danger btn-remove-profile">Remove</button>
+                    </div>
+                    <div class="card-body row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Mode Name / Type</label>
+                            <select class="form-select form-select-sm"
+                                    th:field="*{firingModes[__${stat.index}__].firingModeName}" required>
+                                <option value="">-- Select Mode --</option>
+                                <option th:each="option : ${firingModeList}"
+                                        th:value="${option.firingModeName}"
+                                        th:text="${option.firingModeName}"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="form-label small fw-bold">Max Damage</label>
+                            <input type="text" class="form-control form-control-sm"
+                                   th:field="*{firingModes[__${stat.index}__].maxDamage}"/>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="form-label small fw-bold">Min Damage</label>
+                            <input type="text" class="form-control form-control-sm"
+                                   th:field="*{firingModes[__${stat.index}__].minDamage}"/>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="form-label small fw-bold">Wind Up (Frames)</label>
+                            <input type="text" class="form-control form-control-sm"
+                                   th:field="*{firingModes[__${stat.index}__].windupFrames}"/>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label small fw-bold">Action Interval (Frames)</label>
+                            <input type="text" class="form-control form-control-sm"
+                                   th:field="*{firingModes[__${stat.index}__].actionIntervalFrames}"/>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label small fw-bold">Ink Efficiency (%)</label>
+                            <input type="number" step="0.01" class="form-control form-control-sm"
+                                   th:field="*{firingModes[__${stat.index}__].inkEfficiency}"/>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label small fw-bold">Effective Range</label>
+                            <input type="number" step="0.01" class="form-control form-control-sm"
+                                   th:field="*{firingModes[__${stat.index}__].effectiveRange}"/>
+                        </div>
+                        <div class="form-check form-switch bg-light p-3 rounded border mt-4">
+                            <input type="checkbox" th:field="*{firingModes[__${stat.index}__].hasOneshot}" class="form-check-input ms-0 me-2"
+                                   id="hasOneshot"/>
+                            <label class="form-check-label fw-bold" for="hasOneshot">Can one-shot
+                                opponents</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="d-grid gap-2 d-md-block text-end">
+        <div class="row g-3 mb-4 align-items-center">
+            <div class="col-md-6">
+                <label for="avgPaintPerMatch" class="form-label fw-bold">Avg Paint Per Match</label>
+                <input type="number" th:field="*{avgPaintPerMatch}" class="form-control" id="avgPaintPerMatch"
+                       placeholder="e.g., 950"/>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-block text-end mt-4">
             <input class="btn btn-primary btn-lg splat-button px-5" type="submit" value="Add/Modify Weapon">
         </div>
 
     </form>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("firingProfilesContainer");
+        const addBtn = document.getElementById("addProfileBtn");
+        const templateSelect = document.getElementById("firingModeOptionsTemplate");
+
+        // Evaluates structural volume generated by server-side templates
+        let profileIndex = container.querySelectorAll(".profile-card").length;
+
+        // Auto-initializes a single, clean layout card if configuring a completely new weapon entity
+        if (profileIndex === 0) {
+            addProfileRow();
+        }
+
+        // Action binding for dynamic instantiation
+        addBtn.addEventListener("click", function () {
+            addProfileRow();
+        });
+
+        // Event delegation listener tracking modular card teardowns
+        container.addEventListener("click", function (e) {
+            if (e.target && e.target.classList.contains("btn-remove-profile")) {
+                const card = e.target.closest(".profile-card");
+                card.remove();
+                reindexProfiles(); // Triggers re-indexing sequence
+            }
+        });
+
+        // Generates an explicit HTML string structure with mapped array position indexes
+        function addProfileRow() {
+            const card = document.createElement("div");
+            card.className = "card profile-card mb-3 border-secondary-subtle shadow-sm";
+
+            const dropdownOptionsHtml = templateSelect ? templateSelect.innerHTML : '<option value="">-- Select Mode --</option>';
+
+            card.innerHTML = `
+                <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center py-2">
+                    <span class="fw-bold profile-title">Profile #${profileIndex + 1}</span>
+                    <button type="button" class="btn btn-sm btn-danger btn-remove-profile">Remove</button>
+                </div>
+                <div class="card-body row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label small fw-bold">Mode Name / Type</label>
+                        <select class="form-select form-select-sm" name="firingModes[${profileIndex}].firingModeName" required>
+                            ${dropdownOptionsHtml}
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label small fw-bold">Max Damage</label>
+                        <input type="text" class="form-control form-control-sm" name="firingModes[${profileIndex}].maxDamage" />
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label small fw-bold">Min Damage</label>
+                        <input type="text" class="form-control form-control-sm" name="firingModes[${profileIndex}].minDamage"/>
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label small fw-bold">Wind Up</label>
+                        <input type="text" class="form-control form-control-sm" name="firingModes[${profileIndex}].windupFrames"/>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">Ink Efficiency (%)</label>
+                        <input type="number" step="0.01" class="form-control form-control-sm" name="firingModes[${profileIndex}].inkEfficiency"/>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">Action Interval</label>
+                        <input type="text" class="form-control form-control-sm" name="firingModes[${profileIndex}].actionIntervalFrames" value="" />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold">Effective Range</label>
+                        <input type="number" step="0.1" class="form-control form-control-sm" name="firingModes[${profileIndex}].effectiveRange"/>
+                    </div>
+                    <div class="form-check form-switch bg-light p-3 rounded border mt-4">
+                        <input type="checkbox" class="form-check-input ms-0 me-2" id="firingModes[${profileIndex}].hasOneshot"/>
+                        <label class="form-check-label fw-bold" for="firingModes[${profileIndex}].hasOneshot">Can one-shot opponents</label>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(card);
+            profileIndex++;
+        }
+
+        /**
+         * Normalizes array index tracking tags [0, 1, 2...] smoothly if items are removed out of sync.
+         */
+        function reindexProfiles() {
+            const cards = container.querySelectorAll(".profile-card");
+            profileIndex = 0;
+
+            cards.forEach((card, idx) => {
+                card.querySelector(".profile-title").textContent = `Profile #${idx + 1}`;
+
+                // 🎯 FIXED: Changed to query input AND select fields so dropdown lists re-index correctly
+                card.querySelectorAll("input, select").forEach(element => {
+                    const currentName = element.getAttribute("name");
+                    if (currentName) {
+                        // Regular expression updates names from firingModes[X] to firingModes[idx]
+                        const updatedName = currentName.replace(/\[\d+\]/, `[${idx}]`);
+                        element.setAttribute("name", updatedName);
+                    }
+                });
+                profileIndex++;
+            });
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
 </html>

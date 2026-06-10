@@ -1,8 +1,13 @@
 package dev.melissamorgan.splatoonweapons.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "weapons", schema = "splatoon_3_weapons")
@@ -40,12 +45,6 @@ public class Weapon {
     @Column(name = "range_actual")
     private Integer rangeActual;
 
-    @Column(name = "damage_direct")
-    private Integer damageDirect;
-
-    @Column(name = "damage_indirect")
-    private Integer damageIndirect;
-
     @Column(name = "fire_rate")
     private Integer fireRate;
 
@@ -61,15 +60,16 @@ public class Weapon {
     @Column(name = "min_damage")
     private Integer minDamage;
 
-    @Column(name = "has_oneshot")
-    private Boolean hasOneshot;
+    @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.JSON)
+    @Column(name = "firing_modes", columnDefinition = "json")
+    private List<FiringMode> firingModes = new java.util.ArrayList<>();
 
-    public Boolean getHasOneshot() {
-        return hasOneshot;
+    public List<FiringMode> getFiringModes() {
+        return firingModes;
     }
 
-    public void setHasOneshot(Boolean hasOneshot) {
-        this.hasOneshot = hasOneshot;
+    public void setFiringModes(List<FiringMode> firingModes) {
+        this.firingModes = firingModes;
     }
 
     public Integer getMinDamage() {
@@ -110,22 +110,6 @@ public class Weapon {
 
     public void setFireRate(Integer fireRate) {
         this.fireRate = fireRate;
-    }
-
-    public Integer getDamageIndirect() {
-        return damageIndirect;
-    }
-
-    public void setDamageIndirect(Integer damageIndirect) {
-        this.damageIndirect = damageIndirect;
-    }
-
-    public Integer getDamageDirect() {
-        return damageDirect;
-    }
-
-    public void setDamageDirect(Integer damageDirect) {
-        this.damageDirect = damageDirect;
     }
 
     public Integer getRangeActual() {

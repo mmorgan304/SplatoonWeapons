@@ -41,6 +41,11 @@ public class WeaponServiceImplementation implements WeaponService {
         return weaponDao.getAllWeapons();
     }
 
+    @Override
+    public List<FiringModeLookup> populateFiringModes() {
+        return weaponDao.getAllFiringModes();
+    }
+
 
     // Object manipulation methods
     @Override

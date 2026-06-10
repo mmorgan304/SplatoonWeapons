@@ -1,5 +1,6 @@
 package dev.melissamorgan.splatoonweapons.dao;
 
+import dev.melissamorgan.splatoonweapons.entities.FiringModeLookup;
 import dev.melissamorgan.splatoonweapons.entities.*;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 
@@ -12,6 +13,7 @@ public interface WeaponDAO {
     List<WeaponType> getAllWeaponTypes();
     List<Weight> getAllWeights();
     List<Weapon> getAllWeapons();
+    List<FiringModeLookup> getAllFiringModes();
 
     // Object manipulation method
     void saveWeapon(Weapon newWeapon);

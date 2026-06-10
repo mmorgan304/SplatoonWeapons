@@ -19,6 +19,7 @@ public class AdminController {
         model.addAttribute("subweaponsList", weaponService.populateSubweaponList());
         model.addAttribute("specialWeaponsList", weaponService.populateSpecialWeaponList());
         model.addAttribute("weightList", weaponService.populateWeightList());
+        model.addAttribute("firingModeList", weaponService.populateFiringModes());
         model.addAttribute("weaponList", weaponService.populateAllWeapons());
     }
 
@@ -35,7 +36,7 @@ public class AdminController {
     }
 
     @GetMapping("/modifyweapon/{id}")
-    public String modWeapon(@PathVariable("id") Integer id, Model model) {
+    public String modWeapon(@PathVariable Integer id, Model model) {
         Weapon weapon = weaponService.getWeaponById(id);
         model.addAttribute("newWeapon", weapon);
         return "adminPages/addweapon";
@@ -49,6 +50,7 @@ public class AdminController {
         weapon.setSubweapon(weaponService.getSubweaponById(weapon.getSubweapon().getId()));
         weapon.setSpecialWeapon(weaponService.getSpecialWeaponById(weapon.getSpecialWeapon().getId()));
         weapon.setWeight(weaponService.getWeightById(weapon.getWeight().getId()));
+        
         weaponService.saveWeapon(weapon);
         return "redirect:weaponlist";
     }

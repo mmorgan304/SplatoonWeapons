@@ -2,6 +2,7 @@ package dev.melissamorgan.splatoonweapons.service;
 
 import dev.melissamorgan.splatoonweapons.entities.*;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public interface WeaponService {
     List<WeaponType> populateWeaponTypeList();
     List<Weight> populateWeightList();
     List<Weapon> populateAllWeapons();
+    List<FiringModeLookup> populateFiringModes();
 
     // Object manipulation methods
     void saveWeapon(Weapon newWeapon);
@@ -26,4 +28,5 @@ public interface WeaponService {
     Weapon getWeaponById(Integer id);
 
     Weapon getRandomWeapon(WeaponSearch inclusionSearch);
+
 }

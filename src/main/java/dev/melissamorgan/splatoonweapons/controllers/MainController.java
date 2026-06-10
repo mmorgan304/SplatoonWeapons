@@ -5,7 +5,6 @@ import dev.melissamorgan.splatoonweapons.entities.Subweapon;
 import dev.melissamorgan.splatoonweapons.entities.Weapon;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 import dev.melissamorgan.splatoonweapons.service.WeaponService;
-import org.springframework.beans.factory.BeanRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
