@@ -1,13 +1,9 @@
 package dev.melissamorgan.splatoonweapons.entities;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Table(name = "weapons", schema = "splatoon_3_weapons")
@@ -45,20 +41,11 @@ public class Weapon {
     @Column(name = "range_actual")
     private Integer rangeActual;
 
-    @Column(name = "fire_rate")
-    private Integer fireRate;
-
     @Column(name = "secret_name", length = 50)
     private String secretName;
 
     @Column(name = "avg_paint_per_match")
     private Float avgPaintPerMatch;
-
-    @Column(name = "max_damage")
-    private Integer maxDamage;
-
-    @Column(name = "min_damage")
-    private Integer minDamage;
 
     @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.JSON)
     @Column(name = "firing_modes", columnDefinition = "json")
@@ -70,22 +57,6 @@ public class Weapon {
 
     public void setFiringModes(List<FiringMode> firingModes) {
         this.firingModes = firingModes;
-    }
-
-    public Integer getMinDamage() {
-        return minDamage;
-    }
-
-    public void setMinDamage(Integer minDamage) {
-        this.minDamage = minDamage;
-    }
-
-    public Integer getMaxDamage() {
-        return maxDamage;
-    }
-
-    public void setMaxDamage(Integer maxDamage) {
-        this.maxDamage = maxDamage;
     }
 
     public Float getAvgPaintPerMatch() {
@@ -102,14 +73,6 @@ public class Weapon {
 
     public void setSecretName(String secretName) {
         this.secretName = secretName;
-    }
-
-    public Integer getFireRate() {
-        return fireRate;
-    }
-
-    public void setFireRate(Integer fireRate) {
-        this.fireRate = fireRate;
     }
 
     public Integer getRangeActual() {

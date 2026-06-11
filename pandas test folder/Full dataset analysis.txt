@@ -1,0 +1,59 @@
+Full dataset analysis
+
+Number of rows in splatoon_data: 4158068
+Deconstructing weapon rosters into sub and special combinations...
+
+🚀 Kit-Aware Match Prediction Accuracy: 55.50%
+
+--- Top 50 Most Important Structural Configuration Features ---
+                   Feature  Importance
+          Diff_total_paint    0.044575
+       Diff_total_spec_pts    0.034463
+            Diff_max_range    0.030605
+          Diff_mean_weight    0.026692
+          Diff_count_sub_1    0.013880
+         Diff_count_spec_1    0.012759
+          Diff_count_sub_2    0.012176
+          Diff_count_sub_4    0.012176
+          Diff_count_sub_9    0.012107
+        Diff_count_spec_16    0.012003
+         Diff_count_spec_6    0.011873
+        Diff_count_spec_10    0.011803
+         Diff_count_spec_8    0.011668
+         Diff_count_sub_10    0.011258
+          Diff_count_sub_3    0.011125
+         Diff_count_spec_2    0.010828
+          Diff_count_sub_5    0.010630
+        Diff_count_spec_13    0.009912
+          Diff_count_sub_6    0.009883
+         Diff_count_sub_12    0.009776
+         Diff_count_spec_5    0.009686
+          Diff_count_sub_8    0.009461
+        Diff_count_spec_12    0.009019
+         Diff_count_sub_11    0.008892
+        Diff_count_spec_15    0.008745
+         Diff_count_spec_3    0.008740
+        Diff_count_spec_19    0.008375
+        Diff_count_spec_11    0.008201
+         Diff_count_sub_13    0.007688
+         Diff_count_spec_7    0.007087
+        Diff_count_spec_14    0.006863
+        Diff_count_spec_17    0.006848
+          Diff_count_sub_7    0.006731
+Alpha_has_sshooter_collabo    0.006104
+               mode_yagura    0.005950
+                 mode_area    0.005938
+         Diff_count_spec_4    0.005925
+        Alpha_has_sshooter    0.005807
+                 mode_hoko    0.005704
+Bravo_has_sshooter_collabo    0.005555
+         Diff_count_sub_14    0.005321
+                mode_asari    0.005080
+           Bravo_has_52gal    0.005063
+           Alpha_has_52gal    0.005056
+        Diff_count_spec_18    0.004995
+          Alpha_has_momiji    0.004871
+          Alpha_has_wakaba    0.004850
+          Bravo_has_momiji    0.004846
+         Diff_count_spec_9    0.004614
+        Bravo_has_sshooter    0.004551
