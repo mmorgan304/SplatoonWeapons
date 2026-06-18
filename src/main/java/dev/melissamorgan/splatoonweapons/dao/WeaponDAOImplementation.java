@@ -1,7 +1,9 @@
 package dev.melissamorgan.splatoonweapons.dao;
 
+import dev.melissamorgan.splatoonweapons.Mode;
+import dev.melissamorgan.splatoonweapons.Stage;
 import dev.melissamorgan.splatoonweapons.entities.FiringModeLookup;
-import dev.melissamorgan.splatoonweapons.entities.*;
+import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.*;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -48,6 +50,16 @@ public class WeaponDAOImplementation implements WeaponDAO {
     @Override
     public List<FiringModeLookup> getAllFiringModes() {
         return entityManager.createQuery("from FiringModeLookup ", FiringModeLookup.class).getResultList();
+    }
+
+    @Override
+    public List<Stage> getAllStages() {
+        return entityManager.createQuery("from Stage", Stage.class).getResultList();
+    }
+
+    @Override
+    public List<Mode> getAllModes() {
+        return entityManager.createQuery("from Mode", Mode.class).getResultList();
     }
 
     /*****************************

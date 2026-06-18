@@ -57,8 +57,8 @@ svg {
 }
 
 .dynamic-fill {
-    fill: #1e90ff;
-    stroke: #1e90ff;
+    fill: #0073E6;
+    stroke: #0073E6;
 }
 
 .container {
@@ -174,6 +174,7 @@ svg {
     font-size: 24px;
     position: relative;
     z-index: 3;
+    padding: 20px;
 }
 
 .right-side {
@@ -314,4 +315,41 @@ svg {
     z-index: 3;
     overflow-y: auto;
     max-height: 80vh;
+}
+     /* 1. Put the team into a 2-column grid */
+.team-grid {
+    display: grid;
+    /* minmax(0, 1fr) forces the columns to stay equal and prevents TomSelect from collapsing them */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%; /* Ensures the grid fills the entire width of the left-side container */
+}
+
+/* Safety net: Force TomSelect wrapper to fill 100% of its grid cell slot */
+.ts-wrapper {
+    width: 100% !important;
+}
+
+/* 2. Shrink the TomSelect boxes */
+.ts-control {
+    min-height: 32px !important; /* Forces it to be shorter */
+    padding: 2px 6px !important; /* Less internal spacing */
+    font-size: 0.85em; /* Slightly smaller text */
+    border-radius: 3px;
+}
+
+/* Shrink the selected weapon "tokens" inside the box */
+.ts-control .item {
+    padding: 2px 6px !important;
+    margin: 2px !important;
+    font-size: 0.9em;
+}
+
+/* Keep the form labels tidy */
+.player-input label {
+    display: block;
+    font-size: 0.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
 }

@@ -1,6 +1,6 @@
 package dev.melissamorgan.splatoonweapons.controllers;
 
-import dev.melissamorgan.splatoonweapons.entities.Weapon;
+import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.Weapon;
 import dev.melissamorgan.splatoonweapons.service.WeaponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

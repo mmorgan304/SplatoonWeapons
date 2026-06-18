@@ -1,6 +1,6 @@
 package dev.melissamorgan.splatoonweapons.dao;
 
-import dev.melissamorgan.splatoonweapons.entities.Users;
+import dev.melissamorgan.splatoonweapons.entities.user.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;

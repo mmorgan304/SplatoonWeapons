@@ -1,7 +1,9 @@
 package dev.melissamorgan.splatoonweapons.dao;
 
+import dev.melissamorgan.splatoonweapons.Mode;
+import dev.melissamorgan.splatoonweapons.Stage;
 import dev.melissamorgan.splatoonweapons.entities.FiringModeLookup;
-import dev.melissamorgan.splatoonweapons.entities.*;
+import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.*;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 
 import java.util.List;
@@ -14,6 +16,8 @@ public interface WeaponDAO {
     List<Weight> getAllWeights();
     List<Weapon> getAllWeapons();
     List<FiringModeLookup> getAllFiringModes();
+    List<Stage> getAllStages();
+    List<Mode> getAllModes();
 
     // Object manipulation method
     void saveWeapon(Weapon newWeapon);

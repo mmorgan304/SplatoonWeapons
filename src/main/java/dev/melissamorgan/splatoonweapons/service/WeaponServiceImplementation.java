@@ -1,7 +1,10 @@
 package dev.melissamorgan.splatoonweapons.service;
 
+import dev.melissamorgan.splatoonweapons.Mode;
+import dev.melissamorgan.splatoonweapons.Stage;
 import dev.melissamorgan.splatoonweapons.dao.WeaponDAO;
 import dev.melissamorgan.splatoonweapons.entities.*;
+import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.*;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,16 @@ public class WeaponServiceImplementation implements WeaponService {
     @Override
     public List<FiringModeLookup> populateFiringModes() {
         return weaponDao.getAllFiringModes();
+    }
+
+    @Override
+    public List<Stage> populateStageList() {
+        return weaponDao.getAllStages();
+    }
+
+    @Override
+    public List<Mode> populateModeList() {
+        return weaponDao.getAllModes();
     }
 
 

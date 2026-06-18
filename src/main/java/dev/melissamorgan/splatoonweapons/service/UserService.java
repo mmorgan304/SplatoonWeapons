@@ -1,8 +1,8 @@
 package dev.melissamorgan.splatoonweapons.service;
 
 import dev.melissamorgan.splatoonweapons.dao.UserDAO;
-import dev.melissamorgan.splatoonweapons.entities.UserPrincipal;
-import dev.melissamorgan.splatoonweapons.entities.Users;
+import dev.melissamorgan.splatoonweapons.entities.user.UserPrincipal;
+import dev.melissamorgan.splatoonweapons.entities.user.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

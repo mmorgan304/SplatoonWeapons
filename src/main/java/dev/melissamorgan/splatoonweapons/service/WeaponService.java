@@ -1,8 +1,10 @@
 package dev.melissamorgan.splatoonweapons.service;
 
+import dev.melissamorgan.splatoonweapons.Mode;
+import dev.melissamorgan.splatoonweapons.Stage;
 import dev.melissamorgan.splatoonweapons.entities.*;
+import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.*;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
-import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -14,6 +16,8 @@ public interface WeaponService {
     List<Weight> populateWeightList();
     List<Weapon> populateAllWeapons();
     List<FiringModeLookup> populateFiringModes();
+    List<Stage> populateStageList();
+    List<Mode> populateModeList();
 
     // Object manipulation methods
     void saveWeapon(Weapon newWeapon);

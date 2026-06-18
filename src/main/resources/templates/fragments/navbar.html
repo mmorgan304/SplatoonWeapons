@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>navbar</title>
 </head>
 <body>
-<nav id="navbar" class="navbar">
+<nav id="navbar" class="navbar" th:fragment="navbar(thisPage)">
     <ul class="nav-list">
-        <li><a href="./randomizer">Splatoon 3 Weapon Randomizer</a></li>
-        <li class="dropdown">How to use
-            <div th:replace="~{fragments/howtouse}"></div>
-        </li>
-        <li class="dropdown">Squid News
+        <li><a href="./">Splat Team</a></li>
+        <li class="dropdown">Tools
             <ul class="dropdown-menu">
-                <li>Coming Soon!</li>
+                <li><a href="./randomizer">Randomizer</a></li>
+                <li>Team Randomizer (Coming Soon!)</li>
+                <li><a href="./recommender">Team Recommender</a></li>
             </ul>
+        </li>
+        <li class="dropdown" >How to use
+            <div th:replace="~{fragments/howtouse :: howtouse(pageName=${thisPage})}"></div>
         </li>
         <li class="dropdown">Resources
             <ul class="dropdown-menu">
