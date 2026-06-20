@@ -103,8 +103,15 @@ public class WeaponDAOImplementation implements WeaponDAO {
     }
 
     @Override
-    public Weapon getWeaponBySecretName(String secretName) {
-        return entityManager.find(Weapon.class, secretName);
+    public Weapon getWeaponByName(String name) {
+        List<Weapon> results = entityManager.createQuery(
+                        "SELECT w FROM Weapon w WHERE w.weaponName = :name", Weapon.class)
+                .setParameter("name", name)
+                .getResultList();
+        if (results.isEmpty()) {
+            return null;
+        }
+        return results.getFirst();
     }
 
     @Override

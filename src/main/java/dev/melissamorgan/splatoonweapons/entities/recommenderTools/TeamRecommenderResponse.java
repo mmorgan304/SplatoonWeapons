@@ -7,6 +7,8 @@ public class TeamRecommenderResponse {
     private Map<String, List<String>> recommendedTeam;
     private FeatureImpacts features;
     private double projectedWinRate;
+    private String explanation;
+    private Map<String, String> weaponImages;
 
     public Map<String, List<String>> getRecommendedTeam() {
         return recommendedTeam;
@@ -30,5 +32,21 @@ public class TeamRecommenderResponse {
 
     public void setProjectedWinRate(double projectedWinRate) {
         this.projectedWinRate = projectedWinRate;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
+    public Map<String, String> getWeaponImages() {
+        return weaponImages;
+    }
+
+    public void setWeaponImages(Map<String, String> weaponImages) {
+        this.weaponImages = weaponImages;
     }
 }

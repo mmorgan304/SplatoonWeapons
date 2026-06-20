@@ -5,7 +5,10 @@ import java.util.List;
 public class FeatureImpacts {
     private List<String> advantages;
     private List<String> deficits;
-    
+
+    public FeatureImpacts() {
+    }
+
     public List<String> getAdvantages() {
         return advantages;
     }

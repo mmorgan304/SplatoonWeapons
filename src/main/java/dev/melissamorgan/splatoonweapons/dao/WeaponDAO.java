@@ -28,7 +28,7 @@ public interface WeaponDAO {
     WeaponType getWeaponTypeById(Integer id);
     Weight getWeightById(Integer id);
     Weapon getWeaponById(Integer id);
-    Weapon getWeaponBySecretName(String secretName);
+    Weapon getWeaponByName(String name);
 
     Weapon getRandomWeapon(WeaponSearch weaponSearch);
 

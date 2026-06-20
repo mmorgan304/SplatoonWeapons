@@ -16,8 +16,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 public class LambdaPredictionClient {
 
     private final ObjectMapper objectMapper;
-    // Replace with your actual Lambda URL
-    private static final String LAMBDA_URL = "https://z7ixljmqdjdkedqc3mohayehxy0vjhqy.lambda-url.us-east-2.on.aws/";
+    private static final String RECOMMEND_URL = "http://18.223.117.75:8000/recommend";
 
     public LambdaPredictionClient(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
@@ -27,11 +26,12 @@ public class LambdaPredictionClient {
         try {
             // 1. Serialize the request exactly as it is
             String jsonPayload = objectMapper.writeValueAsString(request);
+            System.out.println("JSON Payload: " + jsonPayload);
 
             // 2. Build and send the HTTP POST request
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(URI.create(LAMBDA_URL))
+                    .uri(URI.create(RECOMMEND_URL))
                     .header("Content-Type", "application/json")
                     .POST(BodyPublishers.ofString(jsonPayload))
                     .build();

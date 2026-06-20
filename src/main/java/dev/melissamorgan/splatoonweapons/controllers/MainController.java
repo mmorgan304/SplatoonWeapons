@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
@@ -120,10 +121,27 @@ public class MainController {
     public TeamRecommenderResponse generateTeam(@ModelAttribute TeamRecommenderRequest request, Model model) {
         TeamRecommenderResponse response = lambdaPredictionClient.fetchPrediction(request);
 
+        // getting images
+        Map<String, String> imagePaths = new HashMap<>();
+        for (List<String> pool : response.getRecommendedTeam().values()) {
+            if (pool != null && !pool.isEmpty()) {
+                String weaponName = pool.getFirst();
 
-        // retrieve weapon from db based on secret name
+                try {
+                    Weapon weapon = weaponService.getWeaponByName(weaponName);
+                    System.out.println(weapon.getId());
+                    String imgUrl = "/weaponImages/Spl3_Weapon_" + weapon.getId() + ".png";
+                    imagePaths.put(weaponName, imgUrl);
+                } catch (Exception e) {
+                    System.out.println("Could not load image for: " );
+                }
+            }
+        }
+
+        response.setWeaponImages(imagePaths);
 
         String dummyExplanation = "This team is meta.";
         return response;
     }
 }
+

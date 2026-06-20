@@ -31,7 +31,6 @@
         <form id="recommendTeam" th:action="@{/generateTeam}" th:object="${request}" method="GET"
               onsubmit="submissionHandler(event)" style="width: 90%">
             <h2>Team Alpha (Your Team)</h2>
-
             <div class="team-grid">
                 <div class="player-input">
                     <label for="alpha1">Player 1 Pool:</label>
@@ -122,21 +121,33 @@
     <div class="right-side">
         <div id="status-message"></div>
 
-        <div id="recommendation" style="display: none">
+        <div id="recommendation" class="tabcontent">
             <h2>Recommendation:</h2>
-            <div class="team-grid">
-                <div class="rec-slot"><img id="recPlayer1" src="x.png"></div>
-                <div class="rec-slot"><img id="recPlayer2" src="x.png"></div>
-                <div class="rec-slot"><img id="recPlayer3" src="x.png"></div>
-                <div class="rec-slot"><img id="recPlayer4" src="x.png"></div>
+            <div class="team-grid" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <div class="rec-slot"><img id="recPlayer1" src="x.png" alt="Player 1" style="max-width: 100%;"></div>
+                <div class="rec-slot"><img id="recPlayer2" src="x.png" alt="Player 2" style="max-width: 100%;"></div>
+                <div class="rec-slot"><img id="recPlayer3" src="x.png" alt="Player 3" style="max-width: 100%;"></div>
+                <div class="rec-slot"><img id="recPlayer4" src="x.png" alt="Player 4" style="max-width: 100%;"></div>
             </div>
 
             <h2>Team Features:</h2>
-            <ul id="features-list" class="list-group list-group-flush">
-            </ul>
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <h3 style="font-size: 1.1em; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Advantages</h3>
+                    <ul id="advantages-list" class="list-group list-group-flush" style="list-style-type: none; padding: 0;">
+                        <!-- Advantages will populate here -->
+                    </ul>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="font-size: 1.1em; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Disadvantages</h3>
+                    <ul id="deficits-list" class="list-group list-group-flush" style="list-style-type: none; padding: 0;">
+                        <!-- Deficits will populate here -->
+                    </ul>
+                </div>
+            </div>
 
-            <h2>Explanation:</h2>
-            <div style="color: #ffffff" id="explanation"></div>
+            <h2 style="margin-top: 20px;">Explanation:</h2>
+            <div style="color: #ffffff; background: #333; padding: 15px; border-radius: 5px;" id="explanation"></div>
         </div>
     </div>
 </main>

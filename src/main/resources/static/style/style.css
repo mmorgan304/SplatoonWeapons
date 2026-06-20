@@ -23,6 +23,7 @@ h1 {
 h2 {
     font-family: 'Splatoon2Font', sans-serif;
     font-size: 16px;
+    margin-bottom: 5px;
 }
 
 h3 {
@@ -172,6 +173,8 @@ svg {
     color: white;
     font-family: 'Splatoon2Font', sans-serif;
     font-size: 24px;
+    overflow-y: auto; /* Make the left-side content scrollable */
+    max-height: 90vh; /* Lock the maximum height to the viewport height */
     position: relative;
     z-index: 3;
     padding: 20px;
@@ -316,22 +319,20 @@ svg {
     overflow-y: auto;
     max-height: 80vh;
 }
-     /* 1. Put the team into a 2-column grid */
+
 .team-grid {
     display: grid;
-    /* minmax(0, 1fr) forces the columns to stay equal and prevents TomSelect from collapsing them */
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+    margin-top: 0;
     margin-bottom: 20px;
-    width: 100%; /* Ensures the grid fills the entire width of the left-side container */
+    width: 100%;
 }
 
-/* Safety net: Force TomSelect wrapper to fill 100% of its grid cell slot */
 .ts-wrapper {
     width: 100% !important;
 }
 
-/* 2. Shrink the TomSelect boxes */
 .ts-control {
     min-height: 32px !important; /* Forces it to be shorter */
     padding: 2px 6px !important; /* Less internal spacing */
@@ -352,4 +353,13 @@ svg {
     font-size: 0.5em;
     font-weight: bold;
     margin-bottom: 5px;
+}
+
+.rec-slot {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
