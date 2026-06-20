@@ -103,6 +103,11 @@ public class WeaponDAOImplementation implements WeaponDAO {
     }
 
     @Override
+    public Weapon getWeaponBySecretName(String secretName) {
+        return entityManager.find(Weapon.class, secretName);
+    }
+
+    @Override
     public Weapon getRandomWeapon(WeaponSearch weaponSearch) {
         List<Weapon> weaponList;
         StringBuilder queryBuilder;

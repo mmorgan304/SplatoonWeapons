@@ -1,53 +1,34 @@
 package dev.melissamorgan.splatoonweapons.entities.recommenderTools;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TeamRecommenderResponse {
-    private TeamWeaponPool recommendedTeam;
-    private double predictedWinRate;
-    private List<String> features;
-    private String explanation;
+    private Map<String, List<String>> recommendedTeam;
+    private FeatureImpacts features;
+    private double projectedWinRate;
 
-    public TeamRecommenderResponse() {
-
-    }
-
-    public TeamRecommenderResponse(TeamWeaponPool recommendedTeam, List<String> features, String explanation) {
-        this.recommendedTeam = recommendedTeam;
-        this.features = features;
-        this.explanation = explanation;
-    }
-
-    public TeamWeaponPool getRecommendedTeam() {
+    public Map<String, List<String>> getRecommendedTeam() {
         return recommendedTeam;
     }
 
-    public void setRecommendedTeam(TeamWeaponPool recommendedTeam) {
+    public void setRecommendedTeam(Map<String, List<String>> recommendedTeam) {
         this.recommendedTeam = recommendedTeam;
     }
 
-    public double getPredictedWinRate() {
-        return predictedWinRate;
-    }
-
-    public void setPredictedWinRate(double predictedWinRate) {
-        this.predictedWinRate = predictedWinRate;
-    }
-
-    public List<String> getFeatures() {
+    public FeatureImpacts getFeatures() {
         return features;
     }
 
-    public void setFeatures(List<String> features) {
+    public void setFeatures(FeatureImpacts features) {
         this.features = features;
     }
 
-    public String getExplanation() {
-        return explanation;
+    public double getProjectedWinRate() {
+        return projectedWinRate;
     }
 
-    public void setExplanation(String explanation) {
-        this.explanation = explanation;
+    public void setProjectedWinRate(double projectedWinRate) {
+        this.projectedWinRate = projectedWinRate;
     }
 }

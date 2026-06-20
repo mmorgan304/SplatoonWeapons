@@ -96,6 +96,11 @@ public class WeaponServiceImplementation implements WeaponService {
     }
 
     @Override
+    public Weapon getWeaponBySecretName(String secretName) {
+        return weaponDao.getWeaponBySecretName(secretName);
+    }
+
+    @Override
     public Weapon getRandomWeapon(WeaponSearch weaponSearch) {
         return weaponDao.getRandomWeapon(weaponSearch);
     }

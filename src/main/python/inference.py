@@ -1,4 +1,6 @@
 import json
+import os
+
 import joblib
 import numpy as np
 import pandas as pd
@@ -23,35 +25,33 @@ print("Lambda is warm and ready!")
 # =====================================================================
 # 2. FEATURE IMPORTANCE EXTRACTOR
 # =====================================================================
-def get_top_contributing_features(model, final_scenario_df, trained_features, top_n=5):
-    """
-    Finds the features that the model cares about most which were also
-    highly active/pushed in favor of this specific team composition.
-    """
-    # Get the global importance weights assigned by the Random Forest
+def get_structured_features(model, final_scenario_df, trained_features, top_n=3):
     importances = model.feature_importances_
-
-    # Get the actual feature values for our optimized row
     row_values = final_scenario_df.iloc[0].values
 
-    # Multiply importance by feature value to find what drove *this* layout
-    # (Using absolute value of row data so large negative or positive differentials show impact)
-    impact_scores = importances * np.abs(row_values)
+    # Calculate raw signed impact (keep the positive/negative direction)
+    signed_impacts = importances * row_values
 
-    # Sort and grab the top indices
-    top_indices = np.argsort(impact_scores)[::-1][:top_n]
+    # Get indices sorted by the raw value (highest positive to lowest negative)
+    sorted_indices = np.argsort(signed_impacts)
 
-    explanation_features = []
-    for idx in top_indices:
-        feat_name = trained_features[idx]
-        feat_val = row_values[idx]
-        explanation_features.append(f"{feat_name} (Value: {feat_val:.2f})")
+    # Top Positive Drivers (Alpha Advantages) - End of the sorted array
+    positive_indices = [idx for idx in sorted_indices[::-1] if row_values[idx] > 0][:top_n]
 
-    return explanation_features
+    # Top Negative Drivers (Alpha Deficits) - Beginning of the sorted array
+    negative_indices = [idx for idx in sorted_indices if row_values[idx] < 0][:top_n]
+
+    alpha_advantages = [f"{trained_features[i]} ({row_values[i]:.2f})" for i in positive_indices]
+    alpha_deficits = [f"{trained_features[i]} ({row_values[i]:.2f})" for i in negative_indices]
+
+    return {
+        "advantages": alpha_advantages,
+        "deficits": alpha_deficits
+    }
 
 
 # =====================================================================
-# 3. YOUR OPTIMIZATION ALGORITHM (Slightly modified to return the row)
+# 3. YOUR OPTIMIZATION ALGORITHM
 # =====================================================================
 def find_optimal_team_comp_v3(weapon_pools_per_slot, target_mode, target_stage, bravo_team=None, max_iter=5):
     # Pull the first valid weapon from EACH slot's specific pool
@@ -81,7 +81,7 @@ def find_optimal_team_comp_v3(weapon_pools_per_slot, target_mode, target_stage, 
             b_paint += stats["avg_paint"]
             b_pts += stats["special_pts"]
             b_weight += stats["weight"]
-            if stats["range"] > b_max_damage: b_max_damage = stats["range"] # mapping safely based on your kit logic
+            if stats["range"] > b_max_damage: b_max_damage = stats["range"]
             if stats["sub_id"] in b_sub_counts: b_sub_counts[stats["sub_id"]] += 1
             if stats["special_id"] in b_spec_counts: b_spec_counts[stats["special_id"]] += 1
 
@@ -139,7 +139,7 @@ def find_optimal_team_comp_v3(weapon_pools_per_slot, target_mode, target_stage, 
                 has_changed = True
 
             overall_best_probability = best_prob_for_slot
-            final_test_scenario = test_scenario # Keep track of the winning row configuration
+            final_test_scenario = test_scenario  # Keep track of the winning row configuration
 
         if not has_changed:
             break
@@ -147,59 +147,53 @@ def find_optimal_team_comp_v3(weapon_pools_per_slot, target_mode, target_stage, 
     return optimized_alpha_team, overall_best_probability, final_test_scenario
 
 
-# =====================================================================
-# 4. LAMBDA HANDLER (API Entry Point)
-# =====================================================================
-def lambda_handler(event, context):
-    try:
-        # If your API Gateway passes JSON directly, parsing varies slightly.
-        # Assuming direct event payload mapping:
-        body = json.loads(event.get('body', '{}')) if 'body' in event else event
+def recommend_team(body):
+    # 1. Extract base fields matching Java
+    target_mode = body.get('mode', 'area')
+    target_stage = body.get('stage', 'ama')
 
-        target_mode = body.get('mode', 'area')
-        target_stage = body.get('stage', 'ama')
-        bravo_team = body.get('bravo_team', []) # Enemy composition
+    # 2. Navigate nested objects created by Java Jackson
+    alpha_pool_obj = body.get('alphaTeamPool', {})
+    bravo_pool_obj = body.get('bravoTeamPool', {})
 
-        # Expecting an array of 4 arrays containing weapon secret names
-        weapon_pools = body.get('weapon_pools', [[], [], [], []])
+    # Enemy composition
+    bravo_team = bravo_pool_obj.get('weaponSecretNames', [])
 
-        # Run optimization
-        best_team, win_rate, final_row = find_optimal_team_comp_v3(
-            weapon_pools_per_slot=weapon_pools,
-            target_mode=target_mode,
-            target_stage=target_stage,
-            bravo_team=bravo_team
-        )
+    # Extract the 4 pool tracks from the alpha pool object
+    weapon_pools = [
+        alpha_pool_obj.get('player1Pool', []),
+        alpha_pool_obj.get('player2Pool', []),
+        alpha_pool_obj.get('player3Pool', []),
+        alpha_pool_obj.get('player4Pool', [])
+    ]
 
-        if best_team is None:
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"error": "Invalid mode or stage context provided."})
-            }
+    # 3. Run optimization
+    best_team, win_rate, final_row = find_optimal_team_comp_v3(
+        weapon_pools_per_slot=weapon_pools,
+        target_mode=target_mode,
+        target_stage=target_stage,
+        bravo_team=bravo_team
+    )
 
-        # Extract features driving this decision
-        top_features = get_top_contributing_features(model, final_row, trained_features, top_n=5)
+    if best_team is None:
+        raise ValueError("Invalid mode or stage context provided.")
 
-        # Format Response for Java Back-end
-        response_payload = {
-            "recommendedTeam": {
-                "player1Pool": [best_team[0]],
-                "player2Pool": [best_team[1]],
-                "player3Pool": [best_team[2]],
-                "player4Pool": [best_team[3]]
-            },
-            "features": top_features,
-            "projectedWinRate": float(win_rate)
-        }
+    # 4. Extract feature importance
+    top_features = get_structured_features(
+        model,
+        final_row,
+        trained_features,
+        top_n=5
+    )
 
-        return {
-            "statusCode": 200,
-            "headers": {"Content-Type": "application/json"},
-            "body": json.dumps(response_payload)
-        }
-
-    except Exception as e:
-        return {
-            "statusCode": 500,
-            "body": json.dumps({"error": str(e)})
-        }
+    # 5. Return the payload
+    return {
+        "recommendedTeam": {
+            "player1Pool": [best_team[0]],
+            "player2Pool": [best_team[1]],
+            "player3Pool": [best_team[2]],
+            "player4Pool": [best_team[3]]
+        },
+        "features": top_features,
+        "projectedWinRate": float(win_rate)
+    }

@@ -25,10 +25,10 @@ function submissionHandler(event) {
             const featuresList = document.getElementById('features-list');
             const explanationDiv = document.getElementById('explanation');
 
-            document.getElementById('recPlayer1').alt = team.player1Pool;
-            document.getElementById('recPlayer2').alt = team.player2Pool;
-            document.getElementById('recPlayer3').alt = team.player3Pool;
-            document.getElementById('recPlayer4').alt = team.player4Pool;
+            document.getElementById('recPlayer1').alt = team.player1Pool.weaponName;
+            document.getElementById('recPlayer2').alt = team.player2Pool.weaponName;
+            document.getElementById('recPlayer3').alt = team.player3Pool.weaponName;
+            document.getElementById('recPlayer4').alt = team.player4Pool.weaponName;
 
             featuresList.innerHTML = '';
             data.features.forEach(featureText => {

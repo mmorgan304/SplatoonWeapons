@@ -7,6 +7,7 @@ import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.SpecialWeapon;
 import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.Subweapon;
 import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.Weapon;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
+import dev.melissamorgan.splatoonweapons.service.LambdaPredictionClient;
 import dev.melissamorgan.splatoonweapons.service.WeaponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,8 @@ import java.util.List;
 public class MainController {
     @Autowired
     WeaponService weaponService;
+    @Autowired
+    LambdaPredictionClient lambdaPredictionClient;
 
     @ModelAttribute
     public void populateModel(Model model) {
@@ -115,29 +118,12 @@ public class MainController {
     @GetMapping("/generateTeam")
     @ResponseBody
     public TeamRecommenderResponse generateTeam(@ModelAttribute TeamRecommenderRequest request, Model model) {
-        TeamRecommenderResponse response = new TeamRecommenderResponse();
-        TeamWeaponPool dummyTeam = new TeamWeaponPool(new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
-        // send request to python API
-        // receive responseTeam + features
+        TeamRecommenderResponse response = lambdaPredictionClient.fetchPrediction(request);
 
-        // send response weapons, opponent weapons, and features to RAG system
-        // receive "explanation"
-
-        // dummy data for UI development
-        dummyTeam.getPlayer1Pool().add("52gal");
-        dummyTeam.getPlayer2Pool().add("barrelspinner");
-        dummyTeam.getPlayer3Pool().add("liter4k");
-        dummyTeam.getPlayer4Pool().add("sshooter");
-        List<String> dummyFeatures = new ArrayList<>();
-        dummyFeatures.add(".52 is good");
 
         // retrieve weapon from db based on secret name
 
         String dummyExplanation = "This team is meta.";
-
-        response.setRecommendedTeam(dummyTeam);
-        response.setFeatures(dummyFeatures);
-        response.setExplanation(dummyExplanation);
         return response;
     }
 }
