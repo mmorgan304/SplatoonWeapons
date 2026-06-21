@@ -1,0 +1,1559 @@
+{
+    "Sploosh-o-matic": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Ultra Stamp",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Neo Sploosh-o-matic": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splattershot Jr.": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Big Bubbler",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Splattershot Jr": {
+        "subweapon": "Torpedo",
+        "special weapon": "Wave Breaker",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splash-o-matic": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Crab Tank",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Neo Splash-o-matic": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Triple Inkstrike",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splash-o-matic GCK-O": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Ink Storm",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Aerospray MG": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Reefslider",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Aerospray RG": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Booyah Bomb",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Colorz Aerospray": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Splattercolor Screen",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splattershot": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Trizooka",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Tentatek Spattershot": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Triple Inkstrike",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Glamorz Splattershot": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Kraken Royale",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Hero Shot Replica": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Trizooka",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Octo Shot Replica": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Trizooka",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Shot Replica": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Trizooka",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    ".52 Gal": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    ".52 Gal Deco": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Splattercolor Screen",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "N-Zap '85": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Tacticooler",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "N-Zap '89": {
+        "subweapon": "Autobomb",
+        "special weapon": "Super Chump",
+        "class": "Shooters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splattershot Pro": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Crab Tank",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Forge Splattershot Pro": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Booyah Bomb",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splattershot Pro FRZ-N": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Tenta Missiles",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    ".96 Gal": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Ink Vac",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    ".96 Gal Deco": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Kraken Royale",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Clawz .96 Gal": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Tacticooler",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Jet Squelcher": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Ink Vac",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Jet Squelcher": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Ink Storm",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Jet Squelcher COB-R": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Triple Splashdown",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splattershot Nova": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Annaki Splattershot Nova": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Inkjet",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Luna Blaster": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Zipcaster",
+        "class": "Blasters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Luna Blaster Neo": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Ultra Stamp",
+        "class": "Blasters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Blaster Replica": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Zipcaster",
+        "class": "Blasters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Blaster": {
+        "subweapon": "Autobomb",
+        "special weapon": "Big Bubbler",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Blaster": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Triple Splashdown",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Gleamz Blaster": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Crab Tank",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Range Blaster": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Wave Breaker",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Range Blaster": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Kraken Royale",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Clash Blaster": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Trizooka",
+        "class": "Blasters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Clash Blaster Neo": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Super Chump",
+        "class": "Blasters",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Rapid Blaster": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Triple Inkstrike",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Rapid Blaster Deco": {
+        "subweapon": "Torpedo",
+        "special weapon": "Inkjet",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Rapid Blaster Pro": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Ink Vac",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Rapid Blaster Pro Deco": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Rapid Blaster Pro WNT-R": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Tacticooler",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "S-BLAST '92": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Reefslider",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "S-BLAST '91": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Booyah Bomb",
+        "class": "Blasters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "L-3 Nozzlenose": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Crab Tank",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "L-3 Nozzlenose D": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Ultra Stamp",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Glitterz L-3 Nozzlenose": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Inkjet",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "H-3 Nozzlenose": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Tacticooler",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "H-3 Nozzlenose D": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Big Bubbler",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "H-3 Nozzlenose VIP-R": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Triple Inkstrike",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Squeezer": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Trizooka",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Foil Squeezer": {
+        "subweapon": "Autobomb",
+        "special weapon": "Splattercolor Screen",
+        "class": "Shooters",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Carbon Roller": {
+        "subweapon": "Autobomb",
+        "special weapon": "Zipcaster",
+        "class": "Rollers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Carbon Roller Deco": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Trizooka",
+        "class": "Rollers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Carbon Roller ANG-L": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Super Chump",
+        "class": "Rollers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splat Roller": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Big Bubbler",
+        "class": "Rollers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Krak-On Splat Roller": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Kraken Royale",
+        "class": "Rollers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Roller Replica": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Big Bubbler",
+        "class": "Rollers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Dynamo Roller": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Tacticooler",
+        "class": "Rollers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Gold Dynamo Roller": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Super Chump",
+        "class": "Rollers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Starz Dynamo Roller": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Rollers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Flingza Roller": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Tenta Missiles",
+        "class": "Rollers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Foil Flingza Roller": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Splattercolor Screen",
+        "class": "Rollers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Big Swig Roller": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Ink Vac",
+        "class": "Rollers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Big Swig Roller Express": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Ink Storm",
+        "class": "Rollers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Planetz Big Swig Roller": {
+        "subweapon": "Torpedo",
+        "special weapon": "Triple Splashdown",
+        "class": "Rollers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Inkbrush": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Brushes",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Inkbrush Nouveau": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Ultra Stamp",
+        "class": "Brushes",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Octobrush": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Zipcaster",
+        "class": "Brushes",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Octobrush Nouveau": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Ink Storm",
+        "class": "Brushes",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Cometz Octobrush": {
+        "subweapon": "Autobomb",
+        "special weapon": "Kraken Royale",
+        "class": "Brushes",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Orderbrush Replica": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Zipcaster",
+        "class": "Brushes",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Painbrush": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Wave Breaker",
+        "class": "Brushes",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Painbrush Nouveau": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Tenta Missiles",
+        "class": "Brushes",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Painbrush BRN-Z": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Trizooka",
+        "class": "Brushes",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Classic Squiffer": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Big Bubbler",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "New Squiffer": {
+        "subweapon": "Autobomb",
+        "special weapon": "Zipcaster",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splat Charger": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Ink Vac",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Z+F Splat Charger": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Triple Inkstrike",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splat Charger CAM-O": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Crab Tank",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Charger Replica": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Ink Vac",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splatterscope": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Ink Vac",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Z+F Splatterscope": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Triple Inkstrike",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splatterscope CAM-O": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Crab Tank",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "E-liter 4K": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Wave Breaker",
+        "class": "Chargers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom E-liter 4K": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Kraken Royale",
+        "class": "Chargers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "E-liter 4K Scope": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Wave Breaker",
+        "class": "Chargers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom E-liter 4K Scope": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Kraken Royale",
+        "class": "Chargers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Bamboozler 14 Mk I": {
+        "subweapon": "Autobomb",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Chargers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Bamboozler 14 Mk II": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Super Chump",
+        "class": "Chargers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Goo Tuber": {
+        "subweapon": "Torpedo",
+        "special weapon": "Tenta Missiles",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Goo Tuber": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Ultra Stamp",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Snipewriter 5H": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Tacticooler",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Snipewriter 5B": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Ink Storm",
+        "class": "Chargers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Slosher": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Triple Inkstrike",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Slosher Deco": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Zipcaster",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Slosher Replica": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Triple Inkstrike",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Tri-Slosher": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Inkjet",
+        "class": "Sloshers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Tri-Slosher Nouveau": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Tacticooler",
+        "class": "Sloshers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Tri-Slosher ASH-N": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Splattercolor Screen",
+        "class": "Sloshers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Sloshing Machine": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Booyah Bomb",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Sloshing Machine Neo": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Trizooka",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Bloblobber": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Ink Storm",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Bloblobber Deco": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Kraken Royale",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Explosher": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Ink Storm",
+        "class": "Sloshers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Explosher": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Triple Splashdown",
+        "class": "Sloshers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Dread Wringer": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Reefslider",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Dread Wringer D": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Wave Breaker",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Hornz Dread Wringer": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Crab Tank",
+        "class": "Sloshers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Mini Splatling": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Ultra Stamp",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Zink Mini Splatling": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Big Bubbler",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Mini Splatling RTL-R": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Trizooka",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Heavy Splatling": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Wave Breaker",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Heavy Splatling Deco": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Kraken Royale",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Splatling Replica": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Wave Breaker",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Hydra Splatling": {
+        "subweapon": "Autobomb",
+        "special weapon": "Booyah Bomb",
+        "class": "Splatlings",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Hydra Splatling": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Splattercolor Screen",
+        "class": "Splatlings",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Torrentz Hydra Splatling": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Big Bubbler",
+        "class": "Splatlings",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Ballpoint Splatling": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Inkjet",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Ballpoint Splatling Nouveau": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Ink Vac",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Nautilus 47": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Ink Storm",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Nautilus 79": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Triple Splashdown",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Heavy Edit Splatling": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Tacticooler",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Heavy Edit Splatling Nouveau": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Crab Tank",
+        "class": "Splatlings",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Dapple Dualies": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Tacticooler",
+        "class": "Dualies",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Dapple Dualies Nouveau": {
+        "subweapon": "Torpedo",
+        "special weapon": "Reefslider",
+        "class": "Dualies",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Dapple Dualies NOC-T": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Dualies",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splat Dualies": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Crab Tank",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Enperry Splat Dualies": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Triple Splashdown",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Twinklez Splat Dualies": {
+        "subweapon": "Fizzy Bomb",
+        "special weapon": "Big Bubbler",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Dualie Replicas": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Crab Tank",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Glooga Dualies": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Booyah Bomb",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Glooga Dualies Deco": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Trizooka",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Dualie Squelchers": {
+        "subweapon": "Splat Bomb",
+        "special weapon": "Wave Breaker",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Dualie Squelchers": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Super Chump",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Hoofz Dualie Squelchers": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Splattercolor Screen",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Dark Tetra Dualies": {
+        "subweapon": "Autobomb",
+        "special weapon": "Reefslider",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Light Tetra Dualies": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Zipcaster",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Douser Dualies FF": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Douser Dualies FF": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Triple Inkstrike",
+        "class": "Dualies",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splat Brella": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Triple Inkstrike",
+        "class": "Brellas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Sorella Brella": {
+        "subweapon": "Autobomb",
+        "special weapon": "Inkjet",
+        "class": "Brellas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Brella Replica": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Triple Inkstrike",
+        "class": "Brellas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Tenta Brella": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Ink Vac",
+        "class": "Brellas",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Tenta Sorella Brella": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Trizooka",
+        "class": "Brellas",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Tenta Brella CRE-M": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Super Chump",
+        "class": "Brellas",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Undercover Brella": {
+        "subweapon": "Ink Mine",
+        "special weapon": "Reefslider",
+        "class": "Brellas",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Undercover Sorella Brella": {
+        "subweapon": "Torpedo",
+        "special weapon": "Splattercolor Screen",
+        "class": "Brellas",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Patternz Undercover Brella": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Brellas",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Recycled Brella 24 Mk I": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Big Bubbler",
+        "class": "Brellas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Recycled Brella 24 Mk II": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Triple Splashdown",
+        "class": "Brellas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Tri-Stringer": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Stringers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Inkline Tri-Stringer": {
+        "subweapon": "Sprinkler",
+        "special weapon": "Super Chump",
+        "class": "Stringers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Bulbz Tri-Stringer": {
+        "subweapon": "Angle Shooter",
+        "special weapon": "Inkjet",
+        "class": "Stringers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Stringer Replica": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Killer Wail 5.1",
+        "class": "Stringers",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "REEF-LUX 450": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Tenta Missiles",
+        "class": "Stringers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "REEF-LUX 450 Deco": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Reefslider",
+        "class": "Stringers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "REEF-LUX 450 MIL-K": {
+        "subweapon": "Torpedo",
+        "special weapon": "Booyah Bomb",
+        "class": "Stringers",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Wellstring V": {
+        "subweapon": "Autobomb",
+        "special weapon": "Ultra Stamp",
+        "class": "Stringers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Custom Wellstring V": {
+        "subweapon": "Point Sensor",
+        "special weapon": "Wave Breaker",
+        "class": "Stringers",
+        "weight": "Heavyweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splatana Stamper": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Zipcaster",
+        "class": "Splatanas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splatana Stamper Nouveau": {
+        "subweapon": "Toxic Mist",
+        "special weapon": "Crab Tank",
+        "class": "Splatanas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Stickerz Splatana Stamper": {
+        "subweapon": "Autobomb",
+        "special weapon": "Booyah Bomb",
+        "class": "Splatanas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Order Splatana Replica": {
+        "subweapon": "Burst Bomb",
+        "special weapon": "Zipcaster",
+        "class": "Splatanas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splatana Wiper": {
+        "subweapon": "Torpedo",
+        "special weapon": "Ultra Stamp",
+        "class": "Splatanas",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splatana Wiper Deco": {
+        "subweapon": "Squid Beakon",
+        "special weapon": "Tenta Missiles",
+        "class": "Splatanas",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Splatana Wiper RUS-T": {
+        "subweapon": "Curling Bomb",
+        "special weapon": "Trizooka",
+        "class": "Splatanas",
+        "weight": "Lightweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Mint Decavitator": {
+        "subweapon": "Suction Bomb",
+        "special weapon": "Big Bubbler",
+        "class": "Splatanas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    },
+    "Charcoal Decavitator": {
+        "subweapon": "Splash Wall",
+        "special weapon": "Inkjet",
+        "class": "Splatanas",
+        "weight": "Middleweight",
+        "strengths": "",
+        "weaknesses": "",
+        "playstyle": ""
+    }
+}
