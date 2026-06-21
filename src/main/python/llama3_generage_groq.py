@@ -111,7 +111,7 @@ SPECIAL_KNOWLEDGE_BASE = {
     "Crab Tank": "Anchoring Special. The player sits inside a tank with additional HP. The tank can fire both a stream of lower damage bullets and launch explosive rounds."
 }
 
-client = Groq(api_key="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")
+client = Groq(api_key="")
 
 def generate_team_explanation(recommended_team, bravo_team, advantages, deficits):
     """
