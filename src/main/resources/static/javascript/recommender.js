@@ -18,11 +18,13 @@ function submissionHandler(event) {
     const statusContainer = document.getElementById('status-message');
     statusContainer.innerHTML = '<p class="loading">Analyzing team compositions...</p>';
 
-    fetch('/generateTeam?' + params.toString(), { method: 'GET' })
+    fetch('/generateTeam?' + params.toString(), {method: 'GET'})
         .then(response => response.json())
         .then(data => {
             const team = data.recommendedTeam;
             const images = data.weaponImages || {};
+
+            const hoverRoles = data.hoverRoles || {}
             const explanationDiv = document.getElementById('explanation');
 
             const p1Weapon = team.player1Pool[0];
@@ -42,6 +44,11 @@ function submissionHandler(event) {
             document.getElementById('recPlayer3').src = images[p3Weapon] || 'x.png';
             document.getElementById('recPlayer4').src = images[p4Weapon] || 'x.png';
 
+            document.getElementById('tipPlayer1').innerHTML = `<strong>${p1Weapon}</strong><br>${hoverRoles[p1Weapon] || 'Utilize standard kit spacing and play around teammates.'}`;
+            document.getElementById('tipPlayer2').innerHTML = `<strong>${p2Weapon}</strong><br>${hoverRoles[p2Weapon] || 'Utilize standard kit spacing and play around teammates.'}`;
+            document.getElementById('tipPlayer3').innerHTML = `<strong>${p3Weapon}</strong><br>${hoverRoles[p3Weapon] || 'Utilize standard kit spacing and play around teammates.'}`;
+            document.getElementById('tipPlayer4').innerHTML = `<strong>${p4Weapon}</strong><br>${hoverRoles[p4Weapon] || 'Utilize standard kit spacing and play around teammates.'}`;
+
             // Grab our new separate list containers
             const advantagesList = document.getElementById('advantages-list');
             const deficitsList = document.getElementById('deficits-list');
@@ -53,25 +60,42 @@ function submissionHandler(event) {
             const advantages = data.features.advantages || [];
             const deficits = data.features.deficits || [];
 
-            // Populate Advantages
-            advantages.forEach(f => {
+            if (advantages.length === 0) {
                 const li = document.createElement('li');
-                li.className = 'list-group-item';
+                li.style.color = '#6c757d';
                 li.style.padding = "8px 0";
-                li.textContent = "✅ " + f;
+                li.style.fontStyle = "italic";
+                li.textContent = "No notable advantages discovered.";
                 advantagesList.appendChild(li);
-            });
+            } else {
+                advantages.forEach(f => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.style.padding = "8px 0";
+                    li.textContent = "✅ " + f;
+                    advantagesList.appendChild(li);
+                });
+            }
 
             // Populate Deficits
-            deficits.forEach(f => {
+            if (deficits.length === 0) {
                 const li = document.createElement('li');
-                li.className = 'list-group-item';
+                li.style.color = '#6c757d';
                 li.style.padding = "8px 0";
-                li.textContent = "❌ " + f;
+                li.style.fontStyle = "italic";
+                li.textContent = "✨ No noticeable deficits!";
                 deficitsList.appendChild(li);
-            });
+            } else {
+                deficits.forEach(f => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.style.padding = "8px 0";
+                    li.textContent = "❌ " + f;
+                    deficitsList.appendChild(li);
+                });
+            }
 
-            if(data.explanation) {
+            if (data.explanation) {
                 explanationDiv.textContent = data.explanation;
             }
 

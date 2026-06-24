@@ -9,6 +9,7 @@ public class TeamRecommenderResponse {
     private double projectedWinRate;
     private String explanation;
     private Map<String, String> weaponImages;
+    private Map<String, String> hoverRoles;
 
     public Map<String, List<String>> getRecommendedTeam() {
         return recommendedTeam;
@@ -48,5 +49,13 @@ public class TeamRecommenderResponse {
 
     public void setWeaponImages(Map<String, String> weaponImages) {
         this.weaponImages = weaponImages;
+    }
+
+    public Map<String, String> getHoverRoles() {
+        return hoverRoles;
+    }
+
+    public void setHoverRoles(Map<String, String> hoverRoles) {
+        this.hoverRoles = hoverRoles;
     }
 }

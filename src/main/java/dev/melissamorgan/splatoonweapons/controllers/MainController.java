@@ -8,7 +8,6 @@ import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
 import dev.melissamorgan.splatoonweapons.service.GroqTextClient;
 import dev.melissamorgan.splatoonweapons.service.LambdaPredictionClient;
 import dev.melissamorgan.splatoonweapons.service.WeaponService;
-import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -124,42 +123,8 @@ public class MainController {
     public TeamRecommenderResponse generateTeam(@ModelAttribute TeamRecommenderRequest request, Model model) {
 
         TeamRecommenderResponse response = lambdaPredictionClient.fetchPrediction(request);
-        TeamExplainerRequest explainerRequest = getTeamExplainerRequest(request, response);
-        TeamExplainerResponse explainerResponse = groqTextClient.fetchExplanation(explainerRequest);
-
-        if (explainerResponse != null) {
-            response.setExplanation(explainerResponse.getJustificationParagraph());
-
-            if (response.getFeatures() != null) {
-                response.getFeatures().setAdvantages(explainerResponse.getRephrasedAdvantages());
-                response.getFeatures().setDeficits(explainerResponse.getRephrasedDeficits());
-            }
-        } else {
-            response.setExplanation("Could not generate strategy context at this time.");
-        }
-
-        Map<String, String> imagePaths = new HashMap<>();
-        for (List<String> pool : response.getRecommendedTeam().values()) {
-            if (pool != null && !pool.isEmpty()) {
-                String weaponName = pool.getFirst();
-
-                try {
-                    Weapon weapon = weaponService.getWeaponByName(weaponName);
-                    System.out.println(weapon.getId());
-                    String imgUrl = "/weaponImages/Spl3_Weapon_" + weapon.getId() + ".png";
-                    imagePaths.put(weaponName, imgUrl);
-                } catch (Exception e) {
-                    System.out.println("Could not load image for: " + weaponName);
-                }
-            }
-        }
-        response.setWeaponImages(imagePaths);
-
-        return response;
-    }
-
-    private static @NonNull TeamExplainerRequest getTeamExplainerRequest(TeamRecommenderRequest request, TeamRecommenderResponse response) {
         TeamExplainerRequest explainerRequest = new TeamExplainerRequest();
+        System.out.println(request.getBravoTeamPool().getPlayer1Pool().getFirst());
 
         explainerRequest.setRecommendedTeam(response.getRecommendedTeam());
         explainerRequest.setProjectedWinRate(response.getProjectedWinRate());
@@ -182,7 +147,38 @@ public class MainController {
         }
         explainerRequest.setAdvantages(rawAdvantages);
         explainerRequest.setDeficits(rawDeficits);
-        return explainerRequest;
+
+        System.out.println("explainer request: " + explainerRequest.toString());
+
+        TeamExplainerResponse explainerResponse = groqTextClient.fetchExplanation(explainerRequest);
+        System.out.println("explainer justification: " + explainerResponse.getJustificationParagraph());
+
+        response.setExplanation(explainerResponse.getJustificationParagraph());
+        response.setHoverRoles(explainerResponse.getHoverRoles());
+
+        if (response.getFeatures() != null) {
+            response.getFeatures().setAdvantages(explainerResponse.getRephrasedAdvantages());
+            response.getFeatures().setDeficits(explainerResponse.getRephrasedDeficits());
+        }
+
+        Map<String, String> imagePaths = new HashMap<>();
+        for (List<String> pool : response.getRecommendedTeam().values()) {
+            if (pool != null && !pool.isEmpty()) {
+                String weaponName = pool.getFirst();
+
+                try {
+                    Weapon weapon = weaponService.getWeaponByName(weaponName);
+                    System.out.println(weapon.getId());
+                    String imgUrl = "/weaponImages/Spl3_Weapon_" + weapon.getId() + ".png";
+                    imagePaths.put(weaponName, imgUrl);
+                } catch (Exception e) {
+                    System.out.println("Could not load image for: " + weaponName);
+                }
+            }
+        }
+        response.setWeaponImages(imagePaths);
+
+        return response;
     }
 }
 

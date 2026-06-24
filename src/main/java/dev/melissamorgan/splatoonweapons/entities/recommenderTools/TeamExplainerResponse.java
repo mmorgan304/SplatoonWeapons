@@ -10,6 +10,9 @@ public class TeamExplainerResponse {
     private Map<String, String> hoverRoles;
     private double generationTimeSeconds;
 
+    public TeamExplainerResponse() {
+    }
+
     // Getters and Setters
     public String getJustificationParagraph() { return justificationParagraph; }
     public void setJustificationParagraph(String justificationParagraph) { this.justificationParagraph = justificationParagraph; }

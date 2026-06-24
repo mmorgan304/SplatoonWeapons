@@ -16,7 +16,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 public class GroqTextClient {
 
     private final ObjectMapper objectMapper;
-    private static final String RAG_URL = "";
+    private static final String RAG_URL = "http://3.16.157.6:8000/explain";
 
     public GroqTextClient(ObjectMapper objectMapper) {this.objectMapper = objectMapper;}
 

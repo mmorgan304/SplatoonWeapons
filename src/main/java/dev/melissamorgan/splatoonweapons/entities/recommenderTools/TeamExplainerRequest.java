@@ -13,6 +13,17 @@ public class TeamExplainerRequest {
     public TeamExplainerRequest() {
     }
 
+    @Override
+    public String toString() {
+        return "TeamExplainerRequest{" +
+                "recommendedTeam=" + recommendedTeam +
+                ", bravoTeam=" + bravoTeam +
+                ", advantages=" + advantages +
+                ", deficits=" + deficits +
+                ", projectedWinRate=" + projectedWinRate +
+                '}';
+    }
+
     // Getters and Setters
     public Map<String, List<String>> getRecommendedTeam() { return recommendedTeam; }
     public void setRecommendedTeam(Map<String, List<String>> recommendedTeam) { this.recommendedTeam = recommendedTeam; }
@@ -29,3 +40,4 @@ public class TeamExplainerRequest {
     public double getProjectedWinRate() { return projectedWinRate; }
     public void setProjectedWinRate(double projectedWinRate) { this.projectedWinRate = projectedWinRate; }
 }
+

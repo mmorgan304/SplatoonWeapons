@@ -1,39 +1,53 @@
 import json
 import time
-import ollama
 
 import os
 from pathlib import Path
 from dotenv import load_dotenv
 from groq import Groq
 
-script_dir = Path(__file__).resolve().parent
+# script_dir = Path(__file__).resolve().parent
 
-# Go up 3 levels to reach the main "SplatoonWeapons" folder
-project_root = script_dir.parent.parent.parent
+# # Go up 3 levels to reach the main "SplatoonWeapons" folder
+# project_root = script_dir.parent.parent.parent
+#
+# # Load your .env file directly from the root
+# env_path = project_root / '.env'
+# load_dotenv(dotenv_path=env_path)
 
-# Load your .env file directly from the root
-env_path = project_root / '.env'
-load_dotenv(dotenv_path=env_path)
+load_dotenv()
 
 
 # =====================================================================
 # 2. SIMPLE JSON LOADERS (Simple, straightforward file reads)
 # =====================================================================
 
+# def load_dictionary(filename):
+#     """Opens a JSON file inside the dictionary folder and returns it."""
+#     file_path = project_root / 'src/main/python/dictionary' / filename
+#     with open(file_path, "r", encoding="utf-8") as f:
+#         return json.load(f)
+
 def load_dictionary(filename):
-    """Opens a JSON file inside the dictionary folder and returns it."""
-    file_path = project_root / 'src/main/python/dictionary' / filename
-    with open(file_path, "r", encoding="utf-8") as f:
-        return json.load(f)
+    # 1. Get the directory where this script file actually lives
+    script_dir = Path(__file__).resolve().parent
 
+    # 2. Combine it with the "dictionary" folder and the target filename
+    file_path = script_dir / "dictionary" / filename
 
-# Load your three JSON databases automatically!
+    # 3. Open and safely load the JSON data
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"⚠️ Warning: Could not find dictionary file at: {file_path}")
+        return {} # Return an empty dictionary fallback
+
 WEAPON_KNOWLEDGE_BASE = load_dictionary("weapons.json")
 SUB_KNOWLEDGE_BASE = load_dictionary("subweapons.json")
 SPECIAL_KNOWLEDGE_BASE = load_dictionary("special_weapons.json")
 
-api_key = os.getenv("DEV_GROQ_API_KEY")
+api_key = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=api_key)
 
 

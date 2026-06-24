@@ -22,23 +22,28 @@ def explain(body: dict):
             projected_win_rate=projected_win_rate
         )
 
-        # FastAPI automatically serializes this returned dict back into JSON for Java
-        return result
+        # STEP 3: Translate Python's snake_case results back to Java's camelCase!
+        return {
+            "justificationParagraph": result.get("justification_paragraph", "Could not generate paragraph."),
+            "rephrasedAdvantages": result.get("rephrased_advantages", advantages),
+            "rephrasedDeficits": result.get("rephrased_deficits", deficits),
+            "hoverRoles": result.get("hover_roles", {})
+        }
 
     except ValueError as e:
         print(f"❌ Validation Error: {e}")
         return {
-            "justification_paragraph": f"Value Error during generation: {str(e)}",
-            "rephrased_advantages": [],
-            "rephrased_deficits": [],
-            "hover_roles": {}
+            "justificationParagraph": f"Value Error during generation: {str(e)}",
+            "rephrasedAdvantages": [],
+            "rephrasedDeficits": [],
+            "hoverRoles": {}
         }
 
     except Exception as e:
         print(f"❌ Internal Server Error: {e}")
         return {
-            "justification_paragraph": f"Could not generate strategy context at this time. (Internal Error: {str(e)})",
-            "rephrased_advantages": [],
-            "rephrased_deficits": [],
-            "hover_roles": {}
+            "justificationParagraph": f"Could not generate strategy context at this time. (Internal Error: {str(e)})",
+            "rephrasedAdvantages": [],
+            "rephrasedDeficits": [],
+            "hoverRoles": {}
         }
