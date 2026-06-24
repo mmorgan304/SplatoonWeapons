@@ -1,14 +1,14 @@
 package dev.melissamorgan.splatoonweapons.controllers;
 
-import dev.melissamorgan.splatoonweapons.entities.recommenderTools.TeamRecommenderRequest;
-import dev.melissamorgan.splatoonweapons.entities.recommenderTools.TeamRecommenderResponse;
-import dev.melissamorgan.splatoonweapons.entities.recommenderTools.TeamWeaponPool;
+import dev.melissamorgan.splatoonweapons.entities.recommenderTools.*;
 import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.SpecialWeapon;
 import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.Subweapon;
 import dev.melissamorgan.splatoonweapons.entities.weaponFeatures.Weapon;
 import dev.melissamorgan.splatoonweapons.searchMethods.WeaponSearch;
+import dev.melissamorgan.splatoonweapons.service.GroqTextClient;
 import dev.melissamorgan.splatoonweapons.service.LambdaPredictionClient;
 import dev.melissamorgan.splatoonweapons.service.WeaponService;
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,8 @@ public class MainController {
     WeaponService weaponService;
     @Autowired
     LambdaPredictionClient lambdaPredictionClient;
+    @Autowired
+    GroqTextClient groqTextClient;
 
     @ModelAttribute
     public void populateModel(Model model) {
@@ -119,9 +122,22 @@ public class MainController {
     @GetMapping("/generateTeam")
     @ResponseBody
     public TeamRecommenderResponse generateTeam(@ModelAttribute TeamRecommenderRequest request, Model model) {
-        TeamRecommenderResponse response = lambdaPredictionClient.fetchPrediction(request);
 
-        // getting images
+        TeamRecommenderResponse response = lambdaPredictionClient.fetchPrediction(request);
+        TeamExplainerRequest explainerRequest = getTeamExplainerRequest(request, response);
+        TeamExplainerResponse explainerResponse = groqTextClient.fetchExplanation(explainerRequest);
+
+        if (explainerResponse != null) {
+            response.setExplanation(explainerResponse.getJustificationParagraph());
+
+            if (response.getFeatures() != null) {
+                response.getFeatures().setAdvantages(explainerResponse.getRephrasedAdvantages());
+                response.getFeatures().setDeficits(explainerResponse.getRephrasedDeficits());
+            }
+        } else {
+            response.setExplanation("Could not generate strategy context at this time.");
+        }
+
         Map<String, String> imagePaths = new HashMap<>();
         for (List<String> pool : response.getRecommendedTeam().values()) {
             if (pool != null && !pool.isEmpty()) {
@@ -133,15 +149,40 @@ public class MainController {
                     String imgUrl = "/weaponImages/Spl3_Weapon_" + weapon.getId() + ".png";
                     imagePaths.put(weaponName, imgUrl);
                 } catch (Exception e) {
-                    System.out.println("Could not load image for: " );
+                    System.out.println("Could not load image for: " + weaponName);
                 }
             }
         }
-
         response.setWeaponImages(imagePaths);
 
-        String dummyExplanation = "This team is meta.";
         return response;
+    }
+
+    private static @NonNull TeamExplainerRequest getTeamExplainerRequest(TeamRecommenderRequest request, TeamRecommenderResponse response) {
+        TeamExplainerRequest explainerRequest = new TeamExplainerRequest();
+
+        explainerRequest.setRecommendedTeam(response.getRecommendedTeam());
+        explainerRequest.setProjectedWinRate(response.getProjectedWinRate());
+
+        List<String> bravoWeapons = new ArrayList<>();
+        if (request.getBravoTeamPool() != null) {
+            bravoWeapons.add(request.getBravoTeamPool().getPlayer1Pool().getFirst());
+            bravoWeapons.add(request.getBravoTeamPool().getPlayer2Pool().getFirst());
+            bravoWeapons.add(request.getBravoTeamPool().getPlayer3Pool().getFirst());
+            bravoWeapons.add(request.getBravoTeamPool().getPlayer4Pool().getFirst());
+        }
+        explainerRequest.setBravoTeam(bravoWeapons);
+
+        // Extract raw ML feature values from your FeatureImpacts
+        List<String> rawAdvantages = new ArrayList<>();
+        List<String> rawDeficits = new ArrayList<>();
+        if (response.getFeatures() != null) {
+            rawAdvantages = response.getFeatures().getAdvantages();
+            rawDeficits = response.getFeatures().getDeficits();
+        }
+        explainerRequest.setAdvantages(rawAdvantages);
+        explainerRequest.setDeficits(rawDeficits);
+        return explainerRequest;
     }
 }
 

@@ -277,7 +277,6 @@ def humanize_feature_name(item_string):
         "mode_yagura": "Mode: Tower Control",
         "mode_hoko": "Mode: Rainmaker",
         "mode_asari": "Mode: Clam Blitz",
-        "mode_nawabari": "Mode: Turf War",
         "paint": "Paint",
         "weight": "Weapon Weight"
     }

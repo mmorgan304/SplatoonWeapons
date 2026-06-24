@@ -1,0 +1,79 @@
+{
+  "Trizooka": {
+    "role": "Ranged burst",
+    "description": "Shoots three spinning projectiles across the stage for massive damage."
+  },
+  "Big Bubbler": {
+    "role": "Anchoring, stabilizing",
+    "description": "Protects players inside from outside fire. Great for holding a position or the objective."
+  },
+  "Zipcaster": {
+    "role": "Melee, disruption",
+    "description": "The player zips around the stage like spiderman. Creates a deadly explosion when it attaches to a surface."
+  },
+  "Tenta Missiles": {
+    "role": "Tracking, displacement",
+    "description": "The player fires up to ten deadly homing missiles across the stage. All teammates can see the locations of the targeted enemies."
+  },
+  "Ink Storm": {
+    "role": "Displacement",
+    "description": "A cloud of rain that moves across the stage. Opponents underneath it take damage. Teammates have increased healing under it."
+  },
+  "Booyah Bomb": {
+    "role": "Displacement, damage",
+    "description": "The user rises into the air while coated in armor while charging a ball of ink. The user then throws that ball, which expands to paint the surface and damage any opponents trapped inside."
+  },
+  "Kraken Royale": {
+    "role": "Melee",
+    "description": "Transforms the user into an invincible giant squid that can charge forward for one-hit splats or stall an objective."
+  },
+  "Wave Breaker": {
+    "role": "Tracking",
+    "description": "A deployable device that sends out waves that deal chip damage and track the position of enemies that touch them. User can return to their weapon immediately after deploying with a full ink tank."
+  },
+  "Ink Vac": {
+    "role": "Area control, team shielding",
+    "description": "The player holds a vacuum cleaner that sucks up any incoming projectiles and bombs. It then spits out an explosive ball of ink that covers a lot of turf. Vulnerable from behind or to melee attacks."
+  },
+  "Killer Wail 5.1": {
+    "role": "Tracking and displacement",
+    "description": "Six lasers that pierce through obstacles and track opponents targeted by them. Does damage and will splat players who stay in the beam too long."
+  },
+  "Inkjet": {
+    "role": "Ranged burst",
+    "description": "The player flies around with a jetpack. The jetpack fires explosive rounds. Vulnerable to being sniped out of the air."
+  },
+  "Ultra Stamp": {
+    "role": "Melee, ranged burst",
+    "description": "The player has an enormous stamp shaped like a hammer. The hammer can either rush opponents down and crush them, or be thrown across the stage at far away opponents."
+  },
+  "Crab Tank": {
+    "role": "Anchoring, stabilizing",
+    "description": "The player sits inside a tank with additional HP, though they are exposed from behind. The tank can fire both a stream of lower damage bullets and launch explosive rounds."
+  },
+  "Reefslider": {
+    "role": "Melee, displacement",
+    "description": "The player rides an inflatable shark that quickly travels forward and explodes. Damages any opponent caught in the explosion and paints a large area."
+  },
+  "Triple Inkstrike": {
+    "role": "Displacement, area control",
+    "description": "The player throws three beacons that summon tornadoes of ink that paint the ground and damage opponents stuck within."
+  },
+  "Tacticooler": {
+    "role": "Team buffs",
+    "description": "A refrigerator that distributes drinks that give teammates massive improvements to swim speed, run speed, and respawn time."
+  },
+  "Super Chump": {
+    "role": "Area control",
+    "description": "The player summons a swarm of ink balloons that stick to the ground that burst, damage nearby opponents, and paint the ground. Opponents can destroy the balloons before they pop."
+  },
+  "Splattercolor Screen": {
+    "role": "Area control, displacement",
+    "description": "A large wall that conceals everything behind it. It can be swam through, but the opponents take damage and have their vision disturbed."
+  },
+  "Triple Splashdown": {
+    "role": "Melee",
+    "description": "The player and two inky fists rise into the air and slam into the ground in an explosion that paints the ground and damages nearby opponents. All three can be shot down out of the air before they land."
+  }
+}
+

@@ -1,0 +1,58 @@
+{
+  "Splat Bomb": {
+    "role": "Lethal bomb",
+    "description": "Throwable. A bomb that rolls or bounces and explodes after about one second. Great for flushing out enemies, getting revenge splats, and stalling pursuers."
+  },
+  "Suction Bomb": {
+    "role": "Lethal bomb",
+    "description": "Throwable. Longer fuse time than Splat Bomb and sticks to walls. Excellent for lethal traps, area denial and objective control."
+  },
+  "Burst Bomb": {
+    "role": "Chip damage and mobility",
+    "description": "Throwable. A paint balloon that explodes on contact, painting the surface it hits and dealing minor damage to opponents."
+    },
+  "Curling Bomb": {
+    "role": "Lethal bomb and mobility",
+    "description": "An explosive that travels along the ground, leaving a trail of ink. Once it travels its maximum distance, it has a deadly explosion."
+  },
+  "Autobomb": {
+    "role": "Tracking and Lethal Bomb",
+    "description": "Throwable. Detects any opponents within its radius and follows them around until it explodes. Great for flushing out sharking opponents."
+  },
+  "Ink Mine": {
+    "role": "Area denial, tracking, and paint",
+    "description": "A hidden trap that deals chip damage, paints turf, and tracks enemies who step on it. Good for defending flanks and preventing pushes."
+  },
+  "Toxic Mist": {
+    "role": "Area denial",
+    "description": "Throwable. A small cloud of ink mist that slows down opponents and drains their ink tank. Used to slow down or prevent opponents from moving through an area."
+  },
+  "Point Sensor": {
+    "role": "Tracking",
+    "description": "Throwable. Labels the position of any opponent that is hit by it or moves into its radius. Forces opponents to play more cautiously, since their movements are known."
+  },
+  "Splash Wall": {
+    "role": "Area denial and protection",
+    "description": "A temporary wall. Blocks opponent shots and bombs explode on contact. Opponents take damage when touching it. Used to take up space, block routes, or protect retreats."
+  },
+  "Sprinkler": {
+    "role": "Paint",
+    "description": "A sprinkler that passively paints a circle of turf around it. A set-and-forget method of painting, and a distraction to opponents. Crucial aid in holding a Splat Zone."
+  },
+  "Squid Beakon": {
+    "role": "Mobility and tracking",
+    "description": "A beacon that allows up to two players to jump to it before breaking. Opponents within range are labeled on the map. Used to get teams in fast. Also a distraction: opponents will often prioritize removing them."
+  },
+  "Fizzy Bomb": {
+    "role": "Chip damage and mobility",
+    "description": "Throwable. A bomb that requires shaking to activate. When thrown, it paints a long trail of ink that ends in three small explosions that are deadly in combination. Useful for poking and chipping."
+  },
+  "Torpedo": {
+    "role": "Paint, chip damage, and tracking",
+    "description": "Throwable. A bomb that detects nearby players and follows them. Explodes on impact and creates a second radius of smaller explosions. Opponents can shoot it down, but it's a hassle to do. Relatively cheap."
+  },
+  "Angle Shooter": {
+    "role": "Tracking and chip damage",
+    "description": "Throwable. A dart that travels far and fast in a straight line. Does damage on impact and labels opponents position. Opponents that move into its trail are also labeled."
+  }
+}

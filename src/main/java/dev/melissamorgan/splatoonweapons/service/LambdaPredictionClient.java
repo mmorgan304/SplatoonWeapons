@@ -47,7 +47,6 @@ public class LambdaPredictionClient {
 
         } catch (Exception e) {
             e.printStackTrace();
-            // In a real app, you'd handle this more gracefully, but this gets us started
             return new TeamRecommenderResponse();
         }
     }
