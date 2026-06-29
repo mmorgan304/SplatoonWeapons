@@ -55,17 +55,17 @@
         </div>
 
         <!-- Tab Content -->
-        <div id="whitelistTab" class="tabcontent">
+        <div id="whitelistTab" class="tab-content">
             <h1>Whitelist (include only the checked items)</h1>
             <div th:replace="~{fragments/formfragments :: #categorySearches(isInclusionSearch='true')}"></div>
         </div>
 
-        <div id="blacklistTab" class="tabcontent">
+        <div id="blacklistTab" class="tab-content">
             <h1>Blacklist (exclude all checked items)</h1>
             <div th:replace="~{fragments/formfragments :: #categorySearches(isInclusionSearch='false')}"></div>
         </div>
 
-        <div id="singleWeaponSearchTab" class="tabcontent">
+        <div id="singleWeaponSearchTab" class="tab-content">
             <div class="header-inline">
                 <h1>Need more control? Select only the weapons you want:</h1>
                 <label>

@@ -1,3 +1,5 @@
+# version of the explainer script used when testing on locally hosted llama3. not in final build.
+
 import json
 import time
 import ollama
@@ -114,9 +116,6 @@ SPECIAL_KNOWLEDGE_BASE = {
 client = Groq(api_key="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")
 
 def generate_team_explanation(recommended_team, bravo_team, advantages, deficits):
-    """
-    Takes the output from your ML model, retrieves the lore, and asks the local LLM to explain the matchup.
-    """
 
     # STEP 1: RETRIEVAL (Build Alpha Team Context)
     alpha_context = []
@@ -139,8 +138,6 @@ def generate_team_explanation(recommended_team, bravo_team, advantages, deficits
         playstyle = w_data.get("playstyle", "No data.")
         recommendation = w_data.get("recommendation", "No data.")
 
-        # Format this weapon's full profile for the LLM
-        # Added \n to the end of each line so it formats properly!
         alpha_context.append(
             f"- {weapon_name}:\n"
             f"  * Kit: {sub_name} ({sub_lore}) / {special_name} ({special_lore})\n"

@@ -219,7 +219,7 @@ svg {
 }
 
 /* Tab content */
-.tabcontent {
+.tab-content {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
@@ -227,7 +227,7 @@ svg {
     font-family: 'Montserrat', serif;
     background-color: rgba(255, 255, 255, 0.2);
 }
-.tabcontent .grid-layout {
+.tab-content .grid-layout {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Three columns */
     grid-gap: 5px; /* Space between grid items */
@@ -334,13 +334,12 @@ svg {
 }
 
 .ts-control {
-    min-height: 32px !important; /* Forces it to be shorter */
-    padding: 2px 6px !important; /* Less internal spacing */
-    font-size: 0.85em; /* Slightly smaller text */
+    min-height: 32px !important;
+    padding: 2px 6px !important;
+    font-size: 0.85em;
     border-radius: 3px;
 }
 
-/* Shrink the selected weapon "tokens" inside the box */
 .ts-control .item {
     padding: 2px 6px !important;
     margin: 2px !important;
@@ -374,10 +373,9 @@ svg {
     text-align: left;
     border-radius: 6px;
     padding: 10px;
-    position: absolute;
+    position: relative;
+    display: inline-block;
     z-index: 100;
-    bottom: 105%; /* Positioned above the slot */
-    right: 50%;
     margin-left: -110px; /* Centers the 220px box */
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
@@ -388,20 +386,29 @@ svg {
     border-left: 4px solid #f02d7d; /* Fancy branding accent line */
 }
 
-/* Tiny triangle bubble arrow pointing down */
-.rec-tooltip::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #1e1e24 transparent transparent transparent;
-}
+/*!* Tiny triangle bubble arrow pointing down *!*/
+/*.rec-tooltip::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 100%;*/
+/*    left: 50%;*/
+/*    margin-left: -5px;*/
+/*    border-width: 5px;*/
+/*    border-style: solid;*/
+/*    border-color: #1e1e24 transparent transparent transparent;*/
+/*}*/
 
 /* Hover trigger */
 .rec-slot:hover .rec-tooltip {
     visibility: visible;
     opacity: 1;
+}
+
+.status-container {
+    display: flex;
+    color: red;
+    justify-content: center;
+    font: bold 14px Montserrat, sans-serif;
+    background-color: rgba(0, 0, 0, 0.85);
+    background-size: contain;
 }

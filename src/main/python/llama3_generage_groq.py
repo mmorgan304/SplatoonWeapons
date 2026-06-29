@@ -1,3 +1,8 @@
+# explainer script
+# assembles the parts of the request into a prompt for Groq and sends the API call
+# inputs: alpha_team, bravo_team, adv, defs, projected_win_rate
+# output: json containing justification_paragraph, rephrased advantages, rephrased deficits, four hover roles
+
 import json
 import time
 
@@ -17,25 +22,9 @@ from groq import Groq
 
 load_dotenv()
 
-
-# =====================================================================
-# 2. SIMPLE JSON LOADERS (Simple, straightforward file reads)
-# =====================================================================
-
-# def load_dictionary(filename):
-#     """Opens a JSON file inside the dictionary folder and returns it."""
-#     file_path = project_root / 'src/main/python/dictionary' / filename
-#     with open(file_path, "r", encoding="utf-8") as f:
-#         return json.load(f)
-
 def load_dictionary(filename):
-    # 1. Get the directory where this script file actually lives
     script_dir = Path(__file__).resolve().parent
-
-    # 2. Combine it with the "dictionary" folder and the target filename
     file_path = script_dir / "dictionary" / filename
-
-    # 3. Open and safely load the JSON data
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -46,17 +35,14 @@ def load_dictionary(filename):
 WEAPON_KNOWLEDGE_BASE = load_dictionary("weapons.json")
 SUB_KNOWLEDGE_BASE = load_dictionary("subweapons.json")
 SPECIAL_KNOWLEDGE_BASE = load_dictionary("special_weapons.json")
+WEAPON_NAMES = load_dictionary("weapon_names.json")
 
 api_key = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=api_key)
 
+def generate_team_explanation(recommended_team, bravo_team_comp, advantages, deficits, projected_win_rate_interior):
 
-def generate_team_explanation(recommended_team, bravo_team, advantages, deficits, projected_win_rate):
-    """
-    Takes the output from your ML model, retrieves the lore, and asks the local LLM to explain the matchup.
-    """
-
-    # STEP 1: RETRIEVAL (Build Alpha Team Context)
+    # STEP 1: RETRIEVAL
     safe_kb = {k.lower(): v for k, v in WEAPON_KNOWLEDGE_BASE.items()}
 
     # Fetch context for Team Alpha
@@ -96,11 +82,12 @@ def generate_team_explanation(recommended_team, bravo_team, advantages, deficits
 
     # Fetch context for Team Bravo
     bravo_context = []
-    for weapon_name in bravo_team:
+    for weapon_name in bravo_team_comp:
+        weapon_name = WEAPON_NAMES.get(weapon_name, weapon_name)
         w_data = safe_kb.get(weapon_name.lower(), {})
         bravo_context.append(f"- {weapon_name} (Strengths: {w_data.get('strengths', 'Unknown')})")
 
-    # STEP 3: PROMPT ENGINEERING (Groq Optimized Structure)
+    # STEP 3: PROMPT ENGINEERING
     system_prompt = """ROLE:
 You are an expert competitive Splatoon 3 coach provided with a machine-learning generated team composition. You're charged with explaining why 'you' have suggested these weapons.
 
@@ -166,10 +153,10 @@ DEFICITS:
 {json.dumps(deficits)}
 
 PROJECTED WIN RATE:
-{projected_win_rate}
+{projected_win_rate_interior}
 """
 
-    # STEP 4: GENERATION (Calling your local LLM)
+    # STEP 4: GENERATION
     try:
         print("Thinking... (Sending to Groq)")
         start_time = time.time()
@@ -186,7 +173,7 @@ PROJECTED WIN RATE:
 
         end_time = time.time()
         elapsed_time = end_time - start_time
-        print(f"✅ LLM Generation Complete! Time taken: {elapsed_time:.2f} seconds")
+        print(f"✅ LLM Generation Complete! Time taken: {elapsed_time:.2f} seconds") # local testing for return time
 
         llm_output = json.loads(response.choices[0].message.content)
         return llm_output

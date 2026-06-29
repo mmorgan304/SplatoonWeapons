@@ -1,3 +1,5 @@
+# FastAPI endpoint for the recommender
+
 from fastapi import FastAPI
 from inference import recommend_team
 

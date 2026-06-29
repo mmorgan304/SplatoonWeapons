@@ -1,3 +1,8 @@
+# team recommender script
+# takes the user weapon submission and runs them against the Extra Trees model to determine the best comp
+# inputs: alpha team weapons (as secret_name), stage, mode, bravo team comp (as secret_names)
+# outputs: optimized team alpha (as English names), top 5 human-readable advantages, top 5 human-readable deficits, predicted win percent
+
 import json
 import os
 import re
@@ -6,7 +11,7 @@ import joblib
 import numpy as np
 import pandas as pd
 
-# Name conversion dictionary
+# Name conversion dictionary for specs and subs
 SPECIAL_NAMES = {
     1: "trizooka", 2: "big_bubbler", 3: "zipcaster", 4: "tenta_missiles",
     5: "ink_storm", 6: "booyah_bomb", 7: "kraken_royale", 8: "wave_breaker",
@@ -22,85 +27,17 @@ SUB_NAMES = {
     13: "torpedo", 14: "angle_shooter"
 }
 
-# 2. Main Weapon Name Dictionary (Secret Name -> Human Readable)
-WEAPON_NAMES = {
-    "52gal": ".52 Gal", "52gal_deco": ".52 Gal Deco", "96gal": ".96 Gal", "96gal_deco": ".96 Gal Deco",
-    "promodeler_mg": "Aerospray MG", "promodeler_rg": "Aerospray RG",
-    "spaceshooter_collabo": "Annaki Splattershot Nova",
-    "kugelschreiber": "Ballpoint Splatling", "kugelschreiber_hue": "Ballpoint Splatling Nouveau",
-    "bamboo14mk1": "Bamboozler 14 Mk I", "bamboo14mk2": "Bamboozler 14 Mk II", "wideroller": "Big Swig Roller",
-    "wideroller_collabo": "Big Swig Roller Express", "hotblaster": "Blaster", "furo": "Bloblobber",
-    "furo_deco": "Bloblobber Deco", "tristringer_tou": "Bulbz Tri-Stringer", "carbon": "Carbon Roller",
-    "carbon_angl": "Carbon Roller ANG-L", "carbon_deco": "Carbon Roller Deco",
-    "dentalwiper_sumi": "Charcoal Decavitator",
-    "clashblaster": "Clash Blaster", "clashblaster_neo": "Clash Blaster Neo", "squiclean_a": "Classic Squiffer",
-    "96gal_sou": "Clawz .96 Gal", "promodeler_sai": "Colorz Aerospray", "hokusai_sui": "Cometz Octobrush",
-    "hotblaster_custom": "Custom Blaster", "gaen_ff_custom": "Custom Douser Dualies FF",
-    "dualsweeper_custom": "Custom Dualie Squelchers", "liter4k_custom": "Custom E-liter 4K",
-    "liter4k_scope_custom": "Custom E-liter 4K Scope", "explosher_custom": "Custom Explosher",
-    "soytuber_custom": "Custom Goo Tuber", "hydra_custom": "Custom Hydra Splatling",
-    "jetsweeper_custom": "Custom Jet Squelcher",
-    "longblaster_custom": "Custom Range Blaster", "momiji": "Custom Splattershot Jr.",
-    "furuido_custom": "Custom Wellstring V",
-    "sputtery": "Dapple Dualies", "sputtery_owl": "Dapple Dualies NOC-T", "sputtery_hue": "Dapple Dualies Nouveau",
-    "quadhopper_black": "Dark Tetra Dualies", "gaen_ff": "Douser Dualies FF", "moprin": "Dread Wringer",
-    "moprin_d": "Dread Wringer D", "dualsweeper": "Dualie Squelchers", "dynamo": "Dynamo Roller",
-    "liter4k": "E-liter 4K",
-    "liter4k_scope": "E-liter 4K Scope", "maneuver_collabo": "Enperry Splat Dualies", "explosher": "Explosher",
-    "variableroller": "Flingza Roller", "variableroller_foil": "Foil Flingza Roller",
-    "bottlegeyser_foil": "Foil Squeezer",
-    "prime_collabo": "Forge Splattershot Pro", "sshooter_kou": "Glamorz Splattershot",
-    "hotblaster_en": "Gleamz Blaster",
-    "l3reelgun_haku": "Glitterz L-3 Nozzlenose", "kelvin525": "Glooga Dualies", "kelvin525_deco": "Glooga Dualies Deco",
-    "dynamo_tesla": "Gold Dynamo Roller", "soytuber": "Goo Tuber", "h3reelgun": "H-3 Nozzlenose",
-    "h3reelgun_d": "H-3 Nozzlenose D",
-    "h3reelgun_snak": "H-3 Nozzlenose VIP-R", "examiner": "Heavy Edit Splatling",
-    "examiner_hue": "Heavy Edit Splatling Nouveau",
-    "barrelspinner": "Heavy Splatling", "barrelspinner_deco": "Heavy Splatling Deco",
-    "heroshooter_replica": "Hero Shot Replica",
-    "dualsweeper_tei": "Hoofz Dualie Squelchers", "moprin_kaku": "Hornz Dread Wringer", "hydra": "Hydra Splatling",
-    "pablo": "Inkbrush", "pablo_hue": "Inkbrush Nouveau", "tristringer_collabo": "Inkline Tri-Stringer",
-    "jetsweeper": "Jet Squelcher", "jetsweeper_cobr": "Jet Squelcher COB-R",
-    "splatroller_collabo": "Krak-On Splat Roller",
-    "l3reelgun": "L-3 Nozzlenose", "l3reelgun_d": "L-3 Nozzlenose D", "quadhopper_white": "Light Tetra Dualies",
-    "nova": "Luna Blaster", "nova_neo": "Luna Blaster Neo", "splatspinner": "Mini Splatling",
-    "splatspinner_pytn": "Mini Splatling RTL-R", "dentalwiper_mint": "Mint Decavitator", "nzap85": "N-ZAP '85",
-    "nzap89": "N-ZAP '89", "nautilus47": "Nautilus 47", "nautilus79": "Nautilus 79", "sharp_neo": "Neo Splash-o-matic",
-    "bold_neo": "Neo Sploosh-o-matic", "squiclean_b": "New Squiffer", "octoshooter_replica": "Octo Shot Replica",
-    "hokusai": "Octobrush", "hokusai_hue": "Octobrush Nouveau", "order_blaster_replica": "Order Blaster Replica",
-    "order_shelter_replica": "Order Brella Replica", "order_charger_replica": "Order Charger Replica",
-    "order_maneuver_replica": "Order Dualie Replicas", "order_roller_replica": "Order Roller Replica",
-    "order_shooter_replica": "Order Shot Replica", "order_slosher_replica": "Order Slosher Replica",
-    "order_wiper_replica": "Order Splatana Replica", "order_spinner_replica": "Order Splatling Replica",
-    "order_stringer_replica": "Order Stringer Replica", "order_brush_replica": "Orderbrush Replica",
-    "fincent": "Painbrush", "fincent_brnz": "Painbrush BRN-Z", "fincent_hue": "Painbrush Nouveau",
-    "spygadget_ryo": "Patternz Undercover Brella", "wideroller_waku": "Planetz Big Swig Roller",
-    "longblaster": "Range Blaster", "rapid": "Rapid Blaster", "rapid_deco": "Rapid Blaster Deco",
-    "rapid_elite": "Rapid Blaster Pro", "rapid_elite_deco": "Rapid Blaster Pro Deco",
-    "rapid_elite_wntr": "Rapid Blaster Pro WNT-R",
-    "brella24mk1": "Recycled Brella 24 Mk I", "brella24mk2": "Recycled Brella 24 Mk II", "lact450": "REEF-LUX 450",
-    "lact450_deco": "REEF-LUX 450 Deco", "lact450_milk": "REEF-LUX 450 MIL-K", "sblast91": "S-BLAST '91",
-    "sblast92": "S-BLAST '92", "bucketslosher": "Slosher", "bucketslosher_deco": "Slosher Deco",
-    "screwslosher": "Sloshing Machine",
-    "screwslosher_neo": "Sloshing Machine Neo", "rpen_5b": "Snipewriter 5B", "rpen_5h": "Snipewriter 5H",
-    "parashelter_sorella": "Sorella Brella", "sharp": "Splash-o-matic", "sharp_geck": "Splash-o-matic GCK-O",
-    "parashelter": "Splat Brella", "splatcharger": "Splat Charger", "splatcharger_frst": "Splat Charger CAM-O",
-    "maneuver": "Splat Dualies", "splatroller": "Splat Roller", "jimuwiper": "Splatana Stamper",
-    "jimuwiper_hue": "Splatana Stamper Nouveau", "drivewiper": "Splatana Wiper",
-    "drivewiper_deco": "Splatana Wiper Deco",
-    "drivewiper_rust": "Splatana Wiper RUS-T", "splatscope": "Splatterscope", "splatscope_frst": "Splatterscope CAM-O",
-    "sshooter": "Splattershot", "wakaba": "Splattershot Jr.", "spaceshooter": "Splattershot Nova",
-    "prime": "Splattershot Pro",
-    "prime_frzn": "Splattershot Pro FRZ-N", "bold": "Sploosh-o-matic", "bottlegeyser": "Squeezer",
-    "dynamo_mei": "Starz Dynamo Roller", "jimuwiper_fuu": "Stickerz Splatana Stamper", "campingshelter": "Tenta Brella",
-    "campingshelter_crem": "Tenta Brella CRE-M", "campingshelter_sorella": "Tenta Sorella Brella",
-    "sshooter_collabo": "Tentatek Splattershot", "hydra_atsu": "Torrentz Hydra Splatling", "hissen": "Tri-Slosher",
-    "hissen_ash": "Tri-Slosher ASH-N", "hissen_hue": "Tri-Slosher Nouveau", "tristringer": "Tri-Stringer",
-    "maneuver_you": "Twinklez Splat Dualies", "spygadget": "Undercover Brella",
-    "spygadget_sorella": "Undercover Sorella Brella",
-    "furuido": "Wellstring V", "splatcharger_collabo": "Z+F Splat Charger", "splatscope_collabo": "Z+F Splatterscope",
-    "splatspinner_collabo": "Zink Mini Splatling"
-}
+def load_dictionary(filename):
+    script_dir = Path(__file__).resolve().parent
+    file_path = script_dir / "dictionary" / filename
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"⚠️ Warning: Could not find dictionary file at: {file_path}")
+        return {} # Return an empty dictionary fallback
+
+WEAPON_NAMES = load_dictionary("weapon_names.json")
 
 # =====================================================================
 # 1. GLOBAL INITIALIZATION (Runs once when Lambda container spins up)
@@ -116,7 +53,7 @@ all_subs = metadata["all_subs"]
 all_specials = metadata["all_specials"]
 fallback_defaults = metadata["defaults"]
 rich_kit_dict = metadata["kit_dict"]
-print("Lambda is warm and ready!")
+print("Lambda is ready")
 
 
 # =====================================================================
@@ -146,9 +83,8 @@ def get_structured_features(model, final_scenario_df, trained_features, top_n=3)
         "deficits": alpha_deficits
     }
 
-
 # =====================================================================
-# 3. YOUR OPTIMIZATION ALGORITHM
+# 3. OPTIMIZATION ALGORITHM
 # =====================================================================
 def find_optimal_team_comp_v3(weapon_pools_per_slot, target_mode, target_stage, bravo_team=None, max_iter=5):
     # Pull the first valid weapon from EACH slot's specific pool
@@ -168,7 +104,7 @@ def find_optimal_team_comp_v3(weapon_pools_per_slot, target_mode, target_stage, 
     b_sub_counts = {s: 0 for s in all_subs}
     b_spec_counts = {sp: 0 for sp in all_specials}
 
-    if bravo_team:
+    if bravo_team: # only one weapon per bravo slot
         for weapon in bravo_team:
             bravo_col = f"Bravo_has_{weapon}"
             if bravo_col in match_scenario_base.columns:
@@ -185,6 +121,7 @@ def find_optimal_team_comp_v3(weapon_pools_per_slot, target_mode, target_stage, 
     overall_best_probability = -1
     final_test_scenario = match_scenario_base.copy()
 
+    # iterate over the weapon pool to maximize win %
     for iteration in range(max_iter):
         has_changed = False
         for slot in range(4):
@@ -243,9 +180,8 @@ def find_optimal_team_comp_v3(weapon_pools_per_slot, target_mode, target_stage, 
 
     return optimized_alpha_team, overall_best_probability, final_test_scenario
 
-
+# converting the ET feature ranking into a human/Groq readable description
 def humanize_feature_name(item_string):
-    """Converts internal ML list items 'Feature_Name (Value)' into human-readable strings."""
     # 1. Separate the feature name from the (value)
     match = re.search(r"(.*) \(([-0-9.]+)\)", item_string)
     if not match:
@@ -290,7 +226,6 @@ def humanize_feature_name(item_string):
 
     # 4. Stitch it back together
     return f"{readable} ({val})"
-
 
 def recommend_team(body):
     # 1. Extract base fields matching Java

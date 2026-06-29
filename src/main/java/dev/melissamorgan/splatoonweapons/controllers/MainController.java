@@ -137,6 +137,7 @@ public class MainController {
             bravoWeapons.add(request.getBravoTeamPool().getPlayer4Pool().getFirst());
         }
         explainerRequest.setBravoTeam(bravoWeapons);
+        System.out.println(bravoWeapons);
 
         // Extract raw ML feature values from your FeatureImpacts
         List<String> rawAdvantages = new ArrayList<>();

@@ -11,10 +11,10 @@
 
     <groupId>dev.melissamorgan</groupId>
     <artifactId>SplatoonWeapons</artifactId>
-    <version>0.9</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>Randomizer.ink</name>
-    <description>A web app that contains a random weapon generator for Splatoon 3</description>
+    <description>A web app with several fun tools for Splatoon 3</description>
     <url>https://github.com/mmorgan304/SplatoonWeapons</url>
     <inceptionYear>2024</inceptionYear>
 
